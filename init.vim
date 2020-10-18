@@ -12,7 +12,6 @@
 set nu
 syntax on
 set termguicolors
-colorscheme dracula
 
 set colorcolumn=80
 
@@ -28,18 +27,24 @@ set colorcolumn=80
 "here we will use vim plug, plugin manager it is faster.
 call plug#begin()
 
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'  " General fuzzy finder
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'benmills/vimux' "Vim + Tmux = Love
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
+
+
+"###################################################################
+"			Colorscheme Dracula Setup
+"###################################################################
+colorscheme dracula
 
 "===================================================================
 "			coc settings from the site
@@ -186,17 +191,18 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "====================================================================
+"                    airline theme config
 "====================================================================
-"airline theme config
 let g:airline_theme='dracula'
+let g:airline#extensions#tabline#enabled = 1
 "====================================================================
 "    		NerdTree configs
 "====================================================================
 "some mappings
 nnoremap <leader>n : NERDTreeToggle<CR>
 let g:NERDTreeMinimalUI = 1  " Hide help text
-"====================================================================
-"    		NerdTree configs
+""====================================================================
+"    		fzf configs
 "====================================================================
 let g:fzf_command_prefix = 'Fz'
 nnoremap <C-p> : FzFiles<Cr>
@@ -205,7 +211,17 @@ nnoremap <C-p> : FzFiles<Cr>
 "====================================================================
 let g:VimuxHeight = "20"
 let g:VimuxOrientation = "v"
-" some bingigs
+" some bindings
 :nnoremap <leader>tr : VimuxPromptCommand<Cr>
 :nnoremap <leader>tl : VimuxRunLastCommand<Cr>
 :nnoremap <leader>tc : VimuxCloseRunner<Cr>
+"####################################################################
+"  			cxx-highlight
+"####################################################################
+let g:lsp_cxx_hl_use_text_props = 1
+
+
+
+"###################################################################
+" 			The End
+"###################################################################

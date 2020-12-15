@@ -12,8 +12,9 @@
 set nu
 syntax on
 set termguicolors
+set mouse=a "enable mouse support
 
-set colorcolumn=80
+set colorcolumn=81
 
 "some key bindings to make life easier
 :imap ii <Esc>
@@ -37,6 +38,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'benmills/vimux' "Vim + Tmux = Love
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/tagbar'
+Plug 'joe-skb7/cscope-maps'
 
 call plug#end()
 
@@ -220,7 +223,45 @@ let g:VimuxOrientation = "v"
 "####################################################################
 let g:lsp_cxx_hl_use_text_props = 1
 
-
+"####################################################################
+"  			Tagbar configs
+"####################################################################
+nmap <F8> :TagbarToggle<CR>
+" add a definition for Objective-C to tagbar this is from the wiki page
+" of the tagbar plugin.
+"let g:tagbar_type_objc = {
+"    \ 'ctagstype' : 'ObjectiveC',
+"    \ 'kinds'     : [
+"        \ 'i:interface',
+"        \ 'I:implementation',
+"        \ 'p:Protocol',
+"        \ 'm:Object_method',
+"        \ 'c:Class_method',
+"        \ 'v:Global_variable',
+"        \ 'F:Object field',
+"        \ 'f:function',
+"        \ 'p:property',
+"        \ 't:type_alias',
+"        \ 's:type_structure',
+"        \ 'e:enumeration',
+"        \ 'M:preprocessor_macro',
+"    \ ],
+"    \ 'sro'        : ' ',
+"    \ 'kind2scope' : {
+"        \ 'i' : 'interface',
+"        \ 'I' : 'implementation',
+"        \ 'p' : 'Protocol',
+"        \ 's' : 'type_structure',
+"        \ 'e' : 'enumeration'
+"    \ },
+"    \ 'scope2kind' : {
+"        \ 'interface'      : 'i',
+"        \ 'implementation' : 'I',
+"        \ 'Protocol'       : 'p',
+"        \ 'type_structure' : 's',
+"        \ 'enumeration'    : 'e'
+"    \ }
+"\ }
 
 "###################################################################
 " 			The End

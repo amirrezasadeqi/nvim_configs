@@ -3,5 +3,13 @@
 	"clangd.arguments": [
 		"-j=8",
 		"--completion-style=detailed"
+	],
+	"snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+	"python.jediEnabled": false,
+	"coc.preferences.rootPatterns": [
+		".git",
+		".hg",
+		".projections.json",
+		"compile_commands.json"
 	]
 }

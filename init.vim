@@ -13,6 +13,7 @@ set nu
 syntax on
 set termguicolors
 set mouse=a "enable mouse support
+set clipboard=unnamedplus
 
 set colorcolumn=81
 
@@ -37,9 +38,62 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'benmills/vimux' "Vim + Tmux = Love
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim' " a wrapper for more fzf functionality like what coc
+			" plugins like coc-tasks does. coc-fzf-preview is the
+			" alternative but at the momment is not mature.
+			" fzf.vim works like a charm and linux kernel is a
+			" breez for it.
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/tagbar'
 Plug 'joe-skb7/cscope-maps'
+Plug 'honza/vim-snippets'
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat' " nice for extending '.' keymap for work with 
+			" keymaps of plugins. for example repeats surround
+			" keymaps for nested paranthese.
+
+Plug 'szw/vim-maximizer'  " maximize a window with <F3>
+			  " it has some <C-o> which has 
+			  " some strange behavior but the
+			  " <F3> only works well.
+
+" Plugin for ROS snippets
+" the first plugin is more complete.
+Plug 'SweiLz/ROS-Snippets'
+"Plug 'pijaro/ros-snippets'
+
+" Debugger Plugin
+" UpdateRemotePlugins before the first time using sakhnik/nvim-gdb plugin is 
+" necessary.
+" Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+
+" Actually I will use vimspector plugin. a greate plugin for debugging
+" different languages with ease. the sakhnik/nvim-gdb is good for gdb and pdb
+" but is baremetal and use it when necessary and you know how to use them and
+" the plugin. there is a builtin debugger 'termdebug' for gdb. you must load
+" it with packadd and run it by ':Termdebug <program-name>'.
+" Note> 1. you can use DDD but make some task for running it from inside of
+" 	vim.
+" 	2. compile with '-g' option for using the debuggers.
+" 	3. you must install the middleware(in my thoughts is middleware!) or
+" 	gadet with VimspectorInstall command. i use debugpy and
+" 	vscode-cpptools at the momment. these gadets communicate between real
+" 	debugger and the plugin.
+" 	4. In the root workspace you must have a '.vimspector.json' file for
+" 	that project.
+Plug 'puremourning/vimspector'
+
+" A plugin for partially running codes like we do for python in vscode and
+" jupyter notebooks:
+" Nice feature. enjoy it!!!
+" Note from the repository of sniprun:
+" the klepto package: 'pip install --user klepto' if they use python with REPL.
+" (Python REPL behaviour is enabled by default, but klepto has to be manually installed)
+Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+
+
 
 call plug#end()
 
@@ -60,6 +114,12 @@ set hidden
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
+
+" File type detection for roslaunch files
+" I love this thing(line):
+au BufRead,BufNewFile *.launch set filetype=xml
+au BufRead,BufNewFile *.urdf set filetype=xml
+au BufRead,BufNewFile *.xacro set filetype=xml
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -207,8 +267,17 @@ let g:NERDTreeMinimalUI = 1  " Hide help text
 ""====================================================================
 "    		fzf configs
 "====================================================================
+" Bellow Lines are for fzf.vim plugin
 let g:fzf_command_prefix = 'Fz'
 nnoremap <C-p> : FzFiles<Cr>
+nnoremap <leader>fb :FzBuffers<CR>
+nnoremap <leader>fw :FzWindows<CR>
+nnoremap <leader>flt :FzBTags<CR>
+nnoremap <leader>ft :FzTags<CR>
+nnoremap <leader>fh :FzHistory<CR>
+
+" coc-fzf-preview settings
+
 "====================================================================
 "    		Vimux Configs	
 "====================================================================
@@ -226,43 +295,137 @@ let g:lsp_cxx_hl_use_text_props = 1
 "####################################################################
 "  			Tagbar configs
 "####################################################################
-nmap <F8> :TagbarToggle<CR>
+nmap <leader><F8> :TagbarToggle<CR>
 " add a definition for Objective-C to tagbar this is from the wiki page
 " of the tagbar plugin.
-"let g:tagbar_type_objc = {
-"    \ 'ctagstype' : 'ObjectiveC',
-"    \ 'kinds'     : [
-"        \ 'i:interface',
-"        \ 'I:implementation',
-"        \ 'p:Protocol',
-"        \ 'm:Object_method',
-"        \ 'c:Class_method',
-"        \ 'v:Global_variable',
-"        \ 'F:Object field',
-"        \ 'f:function',
-"        \ 'p:property',
-"        \ 't:type_alias',
-"        \ 's:type_structure',
-"        \ 'e:enumeration',
-"        \ 'M:preprocessor_macro',
-"    \ ],
-"    \ 'sro'        : ' ',
-"    \ 'kind2scope' : {
-"        \ 'i' : 'interface',
-"        \ 'I' : 'implementation',
-"        \ 'p' : 'Protocol',
-"        \ 's' : 'type_structure',
-"        \ 'e' : 'enumeration'
-"    \ },
-"    \ 'scope2kind' : {
-"        \ 'interface'      : 'i',
-"        \ 'implementation' : 'I',
-"        \ 'Protocol'       : 'p',
-"        \ 'type_structure' : 's',
-"        \ 'enumeration'    : 'e'
-"    \ }
-"\ }
+let g:tagbar_type_objc = {
+    \ 'ctagstype' : 'ObjectiveC',
+    \ 'kinds'     : [
+        \ 'i:interface',
+        \ 'I:implementation',
+        \ 'p:Protocol',
+        \ 'm:Object_method',
+        \ 'c:Class_method',
+        \ 'v:Global_variable',
+        \ 'F:Object field',
+        \ 'f:function',
+        \ 'p:property',
+        \ 't:type_alias',
+        \ 's:type_structure',
+        \ 'e:enumeration',
+        \ 'M:preprocessor_macro',
+    \ ],
+    \ 'sro'        : ' ',
+    \ 'kind2scope' : {
+        \ 'i' : 'interface',
+        \ 'I' : 'implementation',
+        \ 'p' : 'Protocol',
+        \ 's' : 'type_structure',
+        \ 'e' : 'enumeration'
+    \ },
+    \ 'scope2kind' : {
+        \ 'interface'      : 'i',
+        \ 'implementation' : 'I',
+        \ 'Protocol'       : 'p',
+        \ 'type_structure' : 's',
+        \ 'enumeration'    : 'e'
+    \ }
+\ }
+
+"####################################################################
+"  			asynctasks configs
+"####################################################################
+
+" And quickfix window can be opened automatically, otherwise you can't
+" see the task output unless using :copen manually.
+
+let g:asyncrun_open = 6
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg', '.vim', 'compile_commands.json']
+" let g:asynctasks_term_pos = 'bottom'
+" let g:asynctasks_term_rows = 10
+" let g:asynctasks_term_cols = 80
+" let g:asynctasks_profile = 'release'
+
+"####################################################################
+"  			nvim-gdb configs
+"####################################################################
+
+" let g:loaded_nvimgdb = 1 " to disable plugin
+
+
+"####################################################################
+"  			vimspector configs
+"####################################################################
+
+" Some Good Tutorials for this plugin are:
+" 1. https://www.youtube.com/watch?v=U4KLYhkIgB4
+" 2. https://www.youtube.com/watch?v=AnTX2mtOl9Q
+" 3. https://www.youtube.com/watch?v=anYJg5GX2xI
+
+" In the future I will cerate a task for automatically creating
+" '.vimspector.json' files.
+
+" vimspector can have remote debugging!!!
+
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO' " works with my keymaps
+" <F5> start the debugger
+" stop debugger
+nmap <leader>dx : VimspectorReset<CR>
+" evaluation of some variables
+nmap <leader>de : VimspectorEval
+" watche window
+nmap <leader>dw : VimspectorWatch
+" output window
+nmap <leader>do : VimspectorShowOutput
+
+
+" bellow keybinds are from
+" https://github.com/awesome-streamers/awesome-streamerrc.git"
+
+" nnoremap <leader>dd :call vimspector#Launch()<CR>
+" nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+" nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+" nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+" nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+" nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+" nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+" nnoremap <leader>de :call vimspector#Reset()<CR>
+
+" nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+
+" nmap <leader>dl <Plug>VimspectorStepInto
+" nmap <leader>dj <Plug>VimspectorStepOver
+" nmap <leader>dk <Plug>VimspectorStepOut
+" nmap <leader>d_ <Plug>VimspectorRestart
+" nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+
+" nmap <leader>drc <Plug>VimspectorRunToCursor
+" nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+" nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+
+
+"####################################################################
+"  			sniprun configs
+"####################################################################
+
+" some Configs from the sniprun repository:
+
+" let g:SnipRun_select_interpreters = ['name_of_the_interpreter'] " I think
+								  " for
+								  " example
+								  " python
+								  " interpreter.
+nnoremap <leader>sl :SnipRun<CR>
+vnoremap <leader>sv :SnipRun<CR>
+nnoremap <leader>st :SnipTerminate<CR>
+nnoremap <leader>sr :SnipReset<CR>
+
+
+
+
 
 "###################################################################
 " 			The End
 "###################################################################
+
+

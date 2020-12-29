@@ -1,0 +1,20 @@
+# comment: this is a sample for python debugging with debugpy.
+{
+  "configurations": {
+    "<name>: Launch": {
+      "adapter": "debugpy",
+      "configuration": {
+        "name": "<name>: Launch",
+        "type": "python",
+        "request": "launch",
+        "cwd": "<workspace>",
+        "python": "<python interpreter>",
+        "stopOnEntry": true,
+        "console": "externalTerminal",
+        "debugOptions": [],
+        "program": "<main python file>"
+      }
+    }
+  }
+}
+

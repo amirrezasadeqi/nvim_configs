@@ -29,6 +29,12 @@ include and ":IncludePathL" for locally add include path.
 Note: alot of tasks are added via coc-tasks and asynctasks plugin for python, C/C++, ros development
 and the corresponding scripts and files are pushed(2021-01-03 03:16).
 
+Note(2021-01-04 02:04): I did remember to say that the local and global inclusion now has embedded reloading 
+of coc.nvim by running command ':CocRestart'. so you add the inclusion and let it go. after automatic reloading
+you will have auto completion for included path. for example you can add the ros include path to have ros auto 
+completion. Enjoy it!
+
+
 ### in the future ...
 
 

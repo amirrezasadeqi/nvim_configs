@@ -20,6 +20,14 @@ in this way you will not need to stop you working progress to add the include di
 so you write your code and after that you can modify your "CMakeLists.txt" to correctly compile
 your code without any interuptions!!!(no need to VSCode ":)" ).
 
+Note: you must reload the coc-clangd for coc.nvim after update of compile_commands.json file to have
+auto completion for new headers and libraries. you can do this by simply ":CocRestart".
+
+Note: from "2021-01-03 03:11" remote plugin is updated and we have ":IncludePathG" for globally add
+include and ":IncludePathL" for locally add include path.
+
+Note: alot of tasks are added via coc-tasks and asynctasks plugin for python, C/C++, ros development
+and the corresponding scripts and files are pushed(2021-01-03 03:16).
 
 ### in the future ...
 

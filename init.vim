@@ -121,6 +121,17 @@ au BufRead,BufNewFile *.launch set filetype=xml
 au BufRead,BufNewFile *.urdf set filetype=xml
 au BufRead,BufNewFile *.xacro set filetype=xml
 
+" adding some settings for python dev
+au BufRead,BufNewFile python
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+    \ set foldmethod=indent
+    \ set foldlevel=99
+
 " Give more space for displaying messages.
 set cmdheight=2
 
@@ -253,6 +264,11 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" List Tasks
+nnoremap <leader> <space>t  :<C-u>CocList tasks<CR>
+" Restart Coc for reloading the compile_commands.json for after including new
+" path:
+nnoremap <leader> <space>re :<C-u>CocRestart<CR>
 "====================================================================
 "                    airline theme config
 "====================================================================
@@ -340,7 +356,7 @@ let g:tagbar_type_objc = {
 " see the task output unless using :copen manually.
 
 let g:asyncrun_open = 6
-let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg', '.vim', 'compile_commands.json']
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg', '.vim', 'compile_commands.json', '.catkin_workspace']
 " let g:asynctasks_term_pos = 'bottom'
 " let g:asynctasks_term_rows = 10
 " let g:asynctasks_term_cols = 80

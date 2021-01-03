@@ -265,10 +265,21 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " List Tasks
-nnoremap <leader> <space>t  :<C-u>CocList tasks<CR>
+nnoremap <silent> <space>t  :<C-u>CocList tasks<CR>
 " Restart Coc for reloading the compile_commands.json for after including new
 " path:
-nnoremap <leader> <space>re :<C-u>CocRestart<CR>
+nnoremap <silent> <space>re :<C-u>CocRestart<CR>
+" kill the async process in two ways. this is because AsyncTask have a bug
+" that says background job is still running.
+" using AsyncStop: I don't know how behaves when more than one process is
+" running but this situation is rare and most of the times I think it would
+" work well.
+nnoremap <leader>kk : AsyncStop <Cr>
+" using ! killall command. if previous way did not work use this one. it
+" prints an red flag that says the roscore-spawn job failed. so I like the
+" first way more.
+nnoremap <leader>kt : !killall -9 roscore && killall -9 rosmaster <Cr>
+
 "====================================================================
 "                    airline theme config
 "====================================================================

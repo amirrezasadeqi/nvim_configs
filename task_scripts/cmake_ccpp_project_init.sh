@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# ~/.config/nvim/task_scripts/cmake_c_project_init.sh
+# ~/.config/nvim/task_scripts/cmake_ccpp_project_init.sh
 
 
 function Make_csource() {

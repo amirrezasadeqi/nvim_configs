@@ -10,6 +10,7 @@
 
 "some general settings
 set nu
+set relativenumber
 syntax on
 set termguicolors
 set mouse=a "enable mouse support

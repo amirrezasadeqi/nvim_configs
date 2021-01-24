@@ -94,7 +94,8 @@ Plug 'puremourning/vimspector'
 " (Python REPL behaviour is enabled by default, but klepto has to be manually installed)
 Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 
-
+" Color previews for CSS
+Plug 'ap/vim-css-color'
 
 call plug#end()
 

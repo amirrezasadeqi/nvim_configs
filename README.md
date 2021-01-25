@@ -34,6 +34,18 @@ of coc.nvim by running command ':CocRestart'. so you add the inclusion and let i
 you will have auto completion for included path. for example you can add the ros include path to have ros auto 
 completion. Enjoy it!
 
+Note(2021-01-26 02:49): I did some modifications to the dracula colorscheme to 
+have a darker background than the deafualt. in this way it is more like the
+dracula pro theme. in file "~/.config/nvim/plugged/dracula/colors/dracula.vim":
+
+	" call s:h('Normal', s:fg, g:dracula_colorterm || has('gui_running') ? s:bg : s:none )
+	call s:h('Normal', s:fg, g:dracula_colorterm || has('gui_running') ? s:bgdark : s:none )
+	....
+	....
+	"hi! link ColorColumn  DraculaBgDark
+	hi! link ColorColumn  CursorLine
+	
+
 
 ### in the future ...
 

@@ -18,6 +18,10 @@ set clipboard=unnamedplus
 
 set colorcolumn=81
 
+"To highlight current line and column
+set cursorline
+set cursorcolumn
+
 "some key bindings to make life easier
 :imap ii <Esc>
 :nmap ; :

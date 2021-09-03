@@ -286,6 +286,9 @@ nnoremap <leader>kk : AsyncStop <Cr>
 " first way more.
 nnoremap <leader>kt : !killall -9 roscore && killall -9 rosmaster <Cr>
 
+" List of coc extensions to install automatically
+let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-pairs', 'coc-tasks', 'coc-snippets', 'coc-texlab', 'coc-sh', 'coc-marketplace', 'coc-python', 'coc-fzf-preview', 'coc-xml', 'coc-yaml']
+
 "====================================================================
 "                    airline theme config
 "====================================================================

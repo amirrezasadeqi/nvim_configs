@@ -1,16 +1,16 @@
-require('packages')
+require('plugins')
 
 require('gsettings')
-require('nvim-tree-settings')
-require('bufferline_settings')
-require('treesitter_settings')
-require('telescope_settings')
-require('dashboard_settings')
-require('lualine_settings')
-require('sneak_Qscope_settings')
-require('theme_settings')
-require('asynctasks_config')
--- require('autosession_settings')
+require('nvimtree_configs')
+require('bufferline_configs')
+require('treesitter_configs')
+require('telescope_configs')
+require('dashboard_configs')
+require('lualine_configs')
+require('sneakQscope_configs')
+require('theme_configs')
+require('asynctasks_configs')
+-- require('sessionManage_configs')
 
 
 --[[----------------------------------------------------------------------------
@@ -20,8 +20,8 @@ require('asynctasks_config')
 
 require('gitsigns').setup()
 
--- setup colorizer 
+-- setup colorizer
 --require'colorizer'.setup()
 
 -- save all of my keymaps in one file
-require('keymaps')
+require('mappings')

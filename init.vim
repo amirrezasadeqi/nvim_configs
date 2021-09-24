@@ -14,7 +14,7 @@
 lua require('init')
 
 " source vimscript files for configuration of specific plugins
-source ~/.config/nvim/vim_scripts/coc_configuration.vim 
+source ~/.config/nvim/vim_scripts/coc_configs.vim 
 source ~/.config/nvim/vim_scripts/tagbar_configs.vim
 
 "====================================================================

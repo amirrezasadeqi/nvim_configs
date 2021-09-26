@@ -109,7 +109,11 @@ vim.g.bookmark_save_per_working_dir = 1
 vim.g.bookmark_auto_save = 1
 vim.g.bookmark_no_default_key_mappings = 1
 
-
+--[[ ####################################################################
+  		            	vim_move configs
+#################################################################### ]]
+-- use Ctrl key with jklh keys to move things. Nice ha!
+vim.g.move_key_modifier = "C"
 
 
 

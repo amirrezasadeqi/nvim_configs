@@ -56,6 +56,7 @@ return require('packer').startup(function()
 --Move faster in your text. it is minimaller than easymotion so I use this.
   use 'justinmk/vim-sneak'
   use 'unblevable/quick-scope' --better for horizontal
+  use 'matze/vim-move' -- Nice! move line visulas chars in four direction
   use 'b3nj5m1n/kommentary' --nice plugin for commenting
 
   use 'szw/vim-maximizer' --[[maximize a window with <F3>

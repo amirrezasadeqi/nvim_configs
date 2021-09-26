@@ -101,6 +101,14 @@ vim.g.vimspector_enable_mappings = "VISUAL_STUDIO" -- works with my keymaps
 -- I think for example python interpreter
 -- vim.g.SnipRun_select_interpreters = { 'name_of_the_interpreter' }
 
+--[[ ####################################################################
+  		            	vim_bookmarks configs
+#################################################################### ]]
+
+vim.g.bookmark_save_per_working_dir = 1
+vim.g.bookmark_auto_save = 1
+vim.g.bookmark_no_default_key_mappings = 1
+
 
 
 

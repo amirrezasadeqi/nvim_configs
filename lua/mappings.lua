@@ -30,6 +30,7 @@ vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {silent 
 vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fM', ':Telescope vim_bookmarks all<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<Space>t', [[<Cmd>lua require('telescope').extensions.asynctasks.all()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-p>', ":lua require'telescope'.extensions.project.project{}<CR>", {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope session-lens search_session<CR>', {silent = true, noremap = true})
@@ -204,6 +205,24 @@ vim.api.nvim_set_keymap('n', '<Leader><Leader>sl', ':SnipRun<CR>', {noremap = tr
 vim.api.nvim_set_keymap('v', '<Leader><Leader>sv', ':SnipRun<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader><Leader>st', ':SnipTerminate<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader><Leader>sr', ':SnipReset<CR>', {noremap = true})
+
+--[[ ####################################################################
+  		            	vim_bookmarks keymaps
+#################################################################### ]]
+
+vim.api.nvim_set_keymap('n', '<Leader>mm', '<Plug>BookmarkToggle', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>mi', '<Plug>BookmarkAnnotate', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>ma', '<Plug>BookmarkShowAll', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>mn', '<Plug>BookmarkNext', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>mp', '<Plug>BookmarkPrev', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>mc', '<Plug>BookmarkClear', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>mx', '<Plug>BookmarkClearAll', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>mkk', '<Plug>BookmarkMoveUp', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>mjj', '<Plug>BookmarkMoveDown', {silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>mg', '<Plug>BookmarkMoveToLine', {silent = true})
+
+
+
 
 
 

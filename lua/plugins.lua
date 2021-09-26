@@ -133,6 +133,10 @@ of this plugin after the plugins setup. ]]
   use 'GustavoKatel/telescope-asynctasks.nvim'
   use 'fannheyward/telescope-coc.nvim'
   use 'nvim-telescope/telescope-project.nvim'
+  use {
+      'tom-anders/telescope-vim-bookmarks.nvim',
+      requires = {'MattesGroeger/vim-bookmarks'}
+  }
 
   --use 'ThePrimeagen/refactoring.nvim' --This is not complete yet and i will use it in future.
   --use 'neovim/nvim-lspconfig' --Collection of configurations for built-in LSP client

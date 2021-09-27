@@ -22,12 +22,19 @@ au BufRead,BufNewFile python
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" if has("nvim-0.5.0") || has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
+
+" I like this option, because it makes enough space for different signs like
+" bookmarks and diagnostics if they are present, otherwise just shows the
+" numbers. I've had not any issues till now with that and if in future there
+" would be a problem I will use the above section which is from the coc nvim
+" repo and is official and has no issue or problem.
+set signcolumn=auto:9
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by

@@ -31,7 +31,7 @@ vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', {silent =
 vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fM', ':Telescope vim_bookmarks all<CR>', {silent = true, noremap = true})
-vim.api.nvim_set_keymap('n', '<Space>t', [[<Cmd>lua require('telescope').extensions.asynctasks.all()<CR>]], {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader><Space>t', [[<Cmd>lua require('telescope').extensions.asynctasks.all()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-p>', ":lua require'telescope'.extensions.project.project{}<CR>", {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope session-lens search_session<CR>', {silent = true, noremap = true})
 
@@ -77,10 +77,12 @@ vim.api.nvim_set_keymap('i', '<c-space>', 'coc#refresh()', {silent = true, expr 
 vim.api.nvim_set_keymap('n', '[g', '<Plug>(coc-diagnostic-prev)', {silent = true})
 vim.api.nvim_set_keymap('n', ']g', '<Plug>(coc-diagnostic-next)', {silent = true})
 -- GoTo code navigation.
-vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {silent = true})
+-- vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {silent = true})
+vim.api.nvim_set_keymap('n', 'gd', ':Telescope coc definitions<CR>', {silent = true}) -- telescope version of previous line
 vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {silent = true})
 vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {silent = true})
-vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {silent = true})
+-- vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {silent = true})
+vim.api.nvim_set_keymap('n', 'gr', ':Telescope coc references<CR>', {silent = true}) -- telescope version of previous line
 -- Use K to show documentation in preview window.
 vim.api.nvim_set_keymap('n', 'K', ':call <SID>show_documentation()<CR>', {silent = true, noremap = true})
 -- Symbol renaming.
@@ -110,17 +112,20 @@ vim.api.nvim_set_keymap('o', 'ac', '<Plug>(coc-classobj-a)', {})
 Requires 'textDocument/selectionRange' support of language server. ]]
 vim.api.nvim_set_keymap('n', '<C-s>', '<Plug>(coc-range-select)', {silent = true})
 vim.api.nvim_set_keymap('x', '<C-s>', '<Plug>(coc-range-select)', {silent = true})
---[[ Mappings using CoCList:
+--[[ Mappings using CoCList and their telescope alternatives, use what you want:
 Show all diagnostics. ]]
-vim.api.nvim_set_keymap('n', '<Space>a', ':<C-u>CocList diagnostics<cr>', {silent = true, noremap = true, nowait = true})
+-- vim.api.nvim_set_keymap('n', '<Space>a', ':<C-u>CocList diagnostics<cr>', {silent = true, noremap = true, nowait = true})
+vim.api.nvim_set_keymap('n', '<Space>a', ':Telescope coc workspace_diagnostics<cr>', {silent = true, noremap = true, nowait = true})
 -- Manage extensions.
 vim.api.nvim_set_keymap('n', '<Space>e', ':<C-u>CocList extensions<cr>', {silent = true, noremap = true, nowait = true})
 -- Show commands.
-vim.api.nvim_set_keymap('n', '<Space>c', ':<C-u>CocList commands<cr>', {silent = true, noremap = true, nowait = true})
+-- vim.api.nvim_set_keymap('n', '<Space>c', ':<C-u>CocList commands<cr>', {silent = true, noremap = true, nowait = true})
+vim.api.nvim_set_keymap('n', '<Space>c', ':Telescope coc commands<cr>', {silent = true, noremap = true, nowait = true})
 -- Find symbol of current document.
 vim.api.nvim_set_keymap('n', '<Space>o', ':<C-u>CocList outline<cr>', {silent = true, noremap = true, nowait = true})
 -- Search workspace symbols.
-vim.api.nvim_set_keymap('n', '<Space>s', ':<C-u>CocList -I symbols<cr>', {silent = true, noremap = true, nowait = true})
+-- vim.api.nvim_set_keymap('n', '<Space>s', ':<C-u>CocList -I symbols<cr>', {silent = true, noremap = true, nowait = true})
+vim.api.nvim_set_keymap('n', '<Space>s', ':Telescope coc workspace_symbols<cr>', {silent = true, noremap = true, nowait = true})
 -- Do default action for next item.
 vim.api.nvim_set_keymap('n', '<Space>j', ':<C-u>CocNext<cr>', {silent = true, noremap = true, nowait = true})
 -- Do default action for previous item.

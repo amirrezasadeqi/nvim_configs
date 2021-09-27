@@ -112,8 +112,8 @@ vim.g.bookmark_no_default_key_mappings = 1
 --[[ ####################################################################
   		            	vim_move configs
 #################################################################### ]]
--- use Ctrl key with jklh keys to move things. Nice ha!
-vim.g.move_key_modifier = "C"
+-- use Alt key with jklh keys to move things. Nice ha!
+vim.g.move_key_modifier = "A"
 
 
 

@@ -2,6 +2,7 @@
 --			dashboard options
 --###################################################################
 
+vim.g.dashboard_session_directory = "/home/areza/.config/nvim/sessions"
 vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_footer = {"🎉 Have Fun with Neovim!"}
 

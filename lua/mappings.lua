@@ -27,6 +27,7 @@ vim.api.nvim_set_keymap('n', 'b]', ':BufferLineCyclePrev<CR>', {noremap = true,s
 --###########################################################]]
 
 vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', {silent = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fo', ':Cd!<CR>', {silent = true, noremap = true}) -- open directory as workspace using fzf
 vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {silent = true, noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', {silent = true, noremap = true})

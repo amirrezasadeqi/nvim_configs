@@ -20,7 +20,8 @@ require('lualine').setup {
   	},
     lualine_x = {
       {'diagnostics',
-        sources = {'coc', 'nvim_lsp'},
+        -- sources = {'coc', 'nvim_lsp'},
+        sources = {vim.g.wlsp},
       },
     },
   },

@@ -54,14 +54,15 @@ vim.o.foldlevel = 2
 			(ported from vimscript)
 =================================================================== ]]
 
--- Give more space for displaying messages.
-vim.g.cmdheight = 2
---[[ Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-delays and poor user experience. ]]
-vim.g.updatetime = 300
--- Don't pass messages to |ins-completion-menu|.
-vim.cmd("set shortmess+=c") -- lua equibalent: vim.opt.shortmess:append({c = true})
-
+if vim.g.wlsp == "coc" then
+  -- Give more space for displaying messages.
+  vim.g.cmdheight = 2
+  --[[ Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+  delays and poor user experience. ]]
+  vim.g.updatetime = 300
+  -- Don't pass messages to |ins-completion-menu|.
+  vim.cmd("set shortmess+=c") -- lua equibalent: vim.opt.shortmess:append({c = true})
+end
 
 --[[ ====================================================================
     		Vimux Configs

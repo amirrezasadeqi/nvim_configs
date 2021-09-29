@@ -12,7 +12,9 @@ return require('packer').startup(function()
   --use {'dracula/vim', as = 'dracula' } -- using Mofiqul instead which is in lua
   use {'Mofiqul/dracula.nvim', as = 'dracula'}
   use {'joshdick/onedark.vim', as = 'onedark'}
-  use {'neoclide/coc.nvim', branch = 'release'}
+  if vim.g.wlsp == "coc" then
+    use {'neoclide/coc.nvim', branch = 'release'}
+  end
 
   -- use 'jackguo380/vim-lsp-cxx-highlight' -- using treesitter highlight instead
   -- use 'vim-airline/vim-airline' -- using lualine instead which is in lua
@@ -132,7 +134,9 @@ of this plugin after the plugins setup. ]]
       end,
   }
   use 'GustavoKatel/telescope-asynctasks.nvim'
-  use 'fannheyward/telescope-coc.nvim'
+  if vim.g.wlsp == "coc" then
+    use 'fannheyward/telescope-coc.nvim'
+  end
   use 'nvim-telescope/telescope-project.nvim'
   use {
       'tom-anders/telescope-vim-bookmarks.nvim',

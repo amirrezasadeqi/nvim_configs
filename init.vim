@@ -25,11 +25,17 @@ command! -bang -bar -nargs=? -complete=dir Cd
     \ {'source': 'find '.( empty("<args>") ? ( <bang>0 ? "~" : "." ) : "<args>" ) .' -type d',
     \ 'sink': 'cd'}))
 
+" Define a variable to choose between coc and builtin neovim lsp.
+" valid values are "coc" and "nvim_lsp".
+let g:wlsp = "coc"
+
 " source configurations from lua files
 lua require('init')
 
 " source vimscript files for configuration of specific plugins
-source ~/.config/nvim/vim_scripts/coc_configs.vim 
+if g:wlsp == "coc" " if using coc source this file
+  source ~/.config/nvim/vim_scripts/coc_configs.vim 
+endif
 source ~/.config/nvim/vim_scripts/tagbar_configs.vim
 
 "====================================================================

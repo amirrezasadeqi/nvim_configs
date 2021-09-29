@@ -21,9 +21,11 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('media_files')
 require('telescope').load_extension('ros')
 require('telescope').load_extension('neoclip')
-require('telescope').load_extension('coc')
 require'telescope'.load_extension('project')
 require('telescope').load_extension('vim_bookmarks')
+if vim.g.wlsp == "coc" then
+  require('telescope').load_extension('coc')
+end
 
 
 

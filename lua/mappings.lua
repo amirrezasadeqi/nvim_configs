@@ -72,72 +72,79 @@ vim.api.nvim_set_keymap('', '<leader><leader>T', '<Plug>Sneak_T', {})
                     (ported from vimscript)
 =================================================================== ]]
 
--- Use <c-space> to trigger completion.
-vim.api.nvim_set_keymap('i', '<c-space>', 'coc#refresh()', {silent = true, expr = true, noremap = true})
--- Use `[g` and `]g` to navigate diagnostics
-vim.api.nvim_set_keymap('n', '[g', '<Plug>(coc-diagnostic-prev)', {silent = true})
-vim.api.nvim_set_keymap('n', ']g', '<Plug>(coc-diagnostic-next)', {silent = true})
--- GoTo code navigation.
--- vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {silent = true})
-vim.api.nvim_set_keymap('n', 'gd', ':Telescope coc definitions<CR>', {silent = true}) -- telescope version of previous line
-vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {silent = true})
-vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {silent = true})
--- vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {silent = true})
-vim.api.nvim_set_keymap('n', 'gr', ':Telescope coc references<CR>', {silent = true}) -- telescope version of previous line
--- Use K to show documentation in preview window.
-vim.api.nvim_set_keymap('n', 'K', ':call <SID>show_documentation()<CR>', {silent = true, noremap = true})
--- Symbol renaming.
-vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', {})
--- Formatting selected code.
-vim.api.nvim_set_keymap('x', '<leader>f', '<Plug>(coc-format-selected)', {})
-vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>(coc-format-selected)', {})
---[[ Applying codeAction to the selected region.
-Example: `<leader>aap` for current paragraph ]]
-vim.api.nvim_set_keymap('x', '<leader>a', '<Plug>(coc-codeaction-selected)', {})
-vim.api.nvim_set_keymap('n', '<leader>a', '<Plug>(coc-codeaction-selected)', {})
--- Remap keys for applying codeAction to the current line.
-vim.api.nvim_set_keymap('n', '<leader>ac', '<Plug>(coc-codeaction)', {})
--- Apply AutoFix to problem on the current line.
-vim.api.nvim_set_keymap('n', '<leader>qf', '<Plug>(coc-fix-current)', {})
---[[ Map function and class text objects
-NOTE: Requires 'textDocument.documentSymbol' support from the language server. ]]
-vim.api.nvim_set_keymap('x', 'if', '<Plug>(coc-funcobj-i)', {})
-vim.api.nvim_set_keymap('o', 'if', '<Plug>(coc-funcobj-i)', {})
-vim.api.nvim_set_keymap('x', 'af', '<Plug>(coc-funcobj-a)', {})
-vim.api.nvim_set_keymap('o', 'af', '<Plug>(coc-funcobj-a)', {})
-vim.api.nvim_set_keymap('x', 'ic', '<Plug>(coc-classobj-i)', {})
-vim.api.nvim_set_keymap('o', 'ic', '<Plug>(coc-classobj-i)', {})
-vim.api.nvim_set_keymap('x', 'ac', '<Plug>(coc-classobj-a)', {})
-vim.api.nvim_set_keymap('o', 'ac', '<Plug>(coc-classobj-a)', {})
---[[ Use CTRL-S for selections ranges.
-Requires 'textDocument/selectionRange' support of language server. ]]
-vim.api.nvim_set_keymap('n', '<C-s>', '<Plug>(coc-range-select)', {silent = true})
-vim.api.nvim_set_keymap('x', '<C-s>', '<Plug>(coc-range-select)', {silent = true})
---[[ Mappings using CoCList and their telescope alternatives, use what you want:
-Show all diagnostics. ]]
--- vim.api.nvim_set_keymap('n', '<Space>a', ':<C-u>CocList diagnostics<cr>', {silent = true, noremap = true, nowait = true})
-vim.api.nvim_set_keymap('n', '<Space>a', ':Telescope coc workspace_diagnostics<cr>', {silent = true, noremap = true, nowait = true})
--- Manage extensions.
-vim.api.nvim_set_keymap('n', '<Space>e', ':<C-u>CocList extensions<cr>', {silent = true, noremap = true, nowait = true})
--- Show commands.
--- vim.api.nvim_set_keymap('n', '<Space>c', ':<C-u>CocList commands<cr>', {silent = true, noremap = true, nowait = true})
-vim.api.nvim_set_keymap('n', '<Space>c', ':Telescope coc commands<cr>', {silent = true, noremap = true, nowait = true})
--- Find symbol of current document.
-vim.api.nvim_set_keymap('n', '<Space>o', ':<C-u>CocList outline<cr>', {silent = true, noremap = true, nowait = true})
--- Search workspace symbols.
--- vim.api.nvim_set_keymap('n', '<Space>s', ':<C-u>CocList -I symbols<cr>', {silent = true, noremap = true, nowait = true})
-vim.api.nvim_set_keymap('n', '<Space>s', ':Telescope coc workspace_symbols<cr>', {silent = true, noremap = true, nowait = true})
--- Do default action for next item.
-vim.api.nvim_set_keymap('n', '<Space>j', ':<C-u>CocNext<cr>', {silent = true, noremap = true, nowait = true})
--- Do default action for previous item.
-vim.api.nvim_set_keymap('n', '<Space>k', ':<C-u>CocPrev<cr>', {silent = true, noremap = true, nowait = true})
--- Resume latest coc list.
-vim.api.nvim_set_keymap('n', '<Space>p', ':<C-u>CocListResume<cr>', {silent = true, noremap = true, nowait = true})
--- List Tasks
-vim.api.nvim_set_keymap('n', '<Space>t', ':<C-u>CocList tasks<cr>', {silent = true, noremap = true})
---[[ Restart Coc for reloading the compile_commands.json for after including new
-path: ]]
-vim.api.nvim_set_keymap('n', '<Space>re', ':<C-u>CocRestart<cr>', {silent = true, noremap = true})
+if vim.g.wlsp == "coc" then
+  -- Use <c-space> to trigger completion.
+  vim.api.nvim_set_keymap('i', '<c-space>', 'coc#refresh()', {silent = true, expr = true, noremap = true})
+  -- Use `[g` and `]g` to navigate diagnostics
+  vim.api.nvim_set_keymap('n', '[g', '<Plug>(coc-diagnostic-prev)', {silent = true})
+  vim.api.nvim_set_keymap('n', ']g', '<Plug>(coc-diagnostic-next)', {silent = true})
+  -- GoTo code navigation.
+  -- vim.api.nvim_set_keymap('n', 'gd', '<Plug>(coc-definition)', {silent = true})
+  vim.api.nvim_set_keymap('n', 'gd', ':Telescope coc definitions<CR>', {silent = true}) -- telescope version of previous line
+  vim.api.nvim_set_keymap('n', 'gy', '<Plug>(coc-type-definition)', {silent = true})
+  vim.api.nvim_set_keymap('n', 'gi', '<Plug>(coc-implementation)', {silent = true})
+  -- vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', {silent = true})
+  vim.api.nvim_set_keymap('n', 'gr', ':Telescope coc references<CR>', {silent = true}) -- telescope version of previous line
+  -- Use K to show documentation in preview window.
+  vim.api.nvim_set_keymap('n', 'K', ':call <SID>show_documentation()<CR>', {silent = true, noremap = true})
+  -- Symbol renaming.
+  vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', {})
+  -- Formatting selected code.
+  vim.api.nvim_set_keymap('x', '<leader>f', '<Plug>(coc-format-selected)', {})
+  vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>(coc-format-selected)', {})
+  --[[ Applying codeAction to the selected region.
+  Example: `<leader>aap` for current paragraph ]]
+  vim.api.nvim_set_keymap('x', '<leader>a', '<Plug>(coc-codeaction-selected)', {})
+  vim.api.nvim_set_keymap('n', '<leader>a', '<Plug>(coc-codeaction-selected)', {})
+  -- Remap keys for applying codeAction to the current line.
+  vim.api.nvim_set_keymap('n', '<leader>ac', '<Plug>(coc-codeaction)', {})
+  -- Apply AutoFix to problem on the current line.
+  vim.api.nvim_set_keymap('n', '<leader>qf', '<Plug>(coc-fix-current)', {})
+  --[[ Map function and class text objects
+  NOTE: Requires 'textDocument.documentSymbol' support from the language server. ]]
+  vim.api.nvim_set_keymap('x', 'if', '<Plug>(coc-funcobj-i)', {})
+  vim.api.nvim_set_keymap('o', 'if', '<Plug>(coc-funcobj-i)', {})
+  vim.api.nvim_set_keymap('x', 'af', '<Plug>(coc-funcobj-a)', {})
+  vim.api.nvim_set_keymap('o', 'af', '<Plug>(coc-funcobj-a)', {})
+  vim.api.nvim_set_keymap('x', 'ic', '<Plug>(coc-classobj-i)', {})
+  vim.api.nvim_set_keymap('o', 'ic', '<Plug>(coc-classobj-i)', {})
+  vim.api.nvim_set_keymap('x', 'ac', '<Plug>(coc-classobj-a)', {})
+  vim.api.nvim_set_keymap('o', 'ac', '<Plug>(coc-classobj-a)', {})
+  --[[ Use CTRL-S for selections ranges.
+  Requires 'textDocument/selectionRange' support of language server. ]]
+  vim.api.nvim_set_keymap('n', '<C-s>', '<Plug>(coc-range-select)', {silent = true})
+  vim.api.nvim_set_keymap('x', '<C-s>', '<Plug>(coc-range-select)', {silent = true})
+  --[[ Mappings using CoCList and their telescope alternatives, use what you want:
+  Show all diagnostics. ]]
+  -- vim.api.nvim_set_keymap('n', '<Space>a', ':<C-u>CocList diagnostics<cr>', {silent = true, noremap = true, nowait = true})
+  vim.api.nvim_set_keymap('n', '<Space>a', ':Telescope coc workspace_diagnostics<cr>', {silent = true, noremap = true, nowait = true})
+  -- Manage extensions.
+  vim.api.nvim_set_keymap('n', '<Space>e', ':<C-u>CocList extensions<cr>', {silent = true, noremap = true, nowait = true})
+  -- Show commands.
+  -- vim.api.nvim_set_keymap('n', '<Space>c', ':<C-u>CocList commands<cr>', {silent = true, noremap = true, nowait = true})
+  vim.api.nvim_set_keymap('n', '<Space>c', ':Telescope coc commands<cr>', {silent = true, noremap = true, nowait = true})
+  -- Find symbol of current document.
+  vim.api.nvim_set_keymap('n', '<Space>o', ':<C-u>CocList outline<cr>', {silent = true, noremap = true, nowait = true})
+  -- Search workspace symbols.
+  -- vim.api.nvim_set_keymap('n', '<Space>s', ':<C-u>CocList -I symbols<cr>', {silent = true, noremap = true, nowait = true})
+  vim.api.nvim_set_keymap('n', '<Space>s', ':Telescope coc workspace_symbols<cr>', {silent = true, noremap = true, nowait = true})
+  -- Do default action for next item.
+  vim.api.nvim_set_keymap('n', '<Space>j', ':<C-u>CocNext<cr>', {silent = true, noremap = true, nowait = true})
+  -- Do default action for previous item.
+  vim.api.nvim_set_keymap('n', '<Space>k', ':<C-u>CocPrev<cr>', {silent = true, noremap = true, nowait = true})
+  -- Resume latest coc list.
+  vim.api.nvim_set_keymap('n', '<Space>p', ':<C-u>CocListResume<cr>', {silent = true, noremap = true, nowait = true})
+  -- List Tasks
+  vim.api.nvim_set_keymap('n', '<Space>t', ':<C-u>CocList tasks<cr>', {silent = true, noremap = true})
+  --[[ Restart Coc for reloading the compile_commands.json for after including new
+  path: ]]
+  vim.api.nvim_set_keymap('n', '<Space>re', ':<C-u>CocRestart<cr>', {silent = true, noremap = true})
+end
+
+--[[ ====================================================================
+    		              Async task and runer keybindings
+==================================================================== ]]
+
 --[[ kill the async process in two ways. this is because AsyncTask have a bug
 that says background job is still running.
 using AsyncStop: I don't know how behaves when more than one process is
@@ -148,8 +155,6 @@ vim.api.nvim_set_keymap('n', '<leader>kk', ':AsyncStop<cr>', {noremap = true})
 prints an red flag that says the roscore-spawn job failed. so I like the
 first way more. ]]
 vim.api.nvim_set_keymap('n', '<leader>kt', ':!killall -9 roscore && killall -9 rosmaster<Cr>', {noremap = true})
-
-
 
 --[[ ====================================================================
     		              Vimux keybindings

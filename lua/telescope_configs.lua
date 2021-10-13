@@ -23,6 +23,7 @@ require('telescope').load_extension('ros')
 require('telescope').load_extension('neoclip')
 require'telescope'.load_extension('project')
 require('telescope').load_extension('vim_bookmarks')
+require('telescope').load_extension('notify')
 if vim.g.wlsp == "coc" then
   require('telescope').load_extension('coc')
 end

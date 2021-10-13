@@ -116,6 +116,37 @@ vim.g.bookmark_no_default_key_mappings = 1
 -- use Alt key with jklh keys to move things. Nice ha!
 vim.g.move_key_modifier = "A"
 
+--[[ ####################################################################
+  		            	indent_blankline configs
+#################################################################### ]]
+
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+  show_end_of_line = true,
+  show_char_blankline = " ",
+  show_current_context = true,
+  buftype_exclude = {"terminal"}
+}
+
+--[[ ####################################################################
+  		            	nvim_notify configs
+#################################################################### ]]
+
+vim.notify = require("notify")
+
+
+
+
+
+
+
+
+
+
+
 
 
 

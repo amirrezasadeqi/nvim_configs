@@ -24,6 +24,8 @@ return require('packer').startup(function()
   requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+  use 'rcarriga/nvim-notify'  -- nice notification plugin
+  use 'lukas-reineke/indent-blankline.nvim'  -- adding indentation guide lines, space dots and CRs
 
   -- use 'ryanoasis/vim-devicons' -- using nvim-web-devicons instead which is in lua
   -- use 'preservim/nerdtree' -- using neovim-tree instead which is in lua
@@ -113,6 +115,7 @@ of this plugin after the plugins setup. ]]
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }  -- We recommend updating the parsers on update
   use 'nvim-treesitter/playground'  -- used for developing tools with treesitter
   use {'SmiteshP/nvim-gps'}
+  use 'p00f/nvim-ts-rainbow'  -- colorizing the nested braces
 
 -- Telescope and its extensions
   use {

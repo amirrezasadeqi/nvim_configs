@@ -128,7 +128,8 @@ require("indent_blankline").setup {
   show_end_of_line = true,
   show_char_blankline = " ",
   show_current_context = true,
-  buftype_exclude = {"terminal"}
+  buftype_exclude = {'terminal', 'nofile'},
+  filetype_exclude = {'help', 'packer'},
 }
 
 --[[ ####################################################################

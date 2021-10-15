@@ -147,8 +147,12 @@ of this plugin after the plugins setup. ]]
   }
 
   --use 'ThePrimeagen/refactoring.nvim' --This is not complete yet and i will use it in future.
-  --use 'neovim/nvim-lspconfig' --Collection of configurations for built-in LSP client
-  				--in future i will setup it in a seperated branch.
+
+  if vim.g.wlsp == "nvim_lsp" then
+    use 'neovim/nvim-lspconfig' -- collection of configurations for built-in LSP client
+    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+    use 'hrsh7th/cmp-nvim-lsp' -- lsp source for nvim-cmp
+  end
 
 -- cover page for neovim 
   use 'glepnir/dashboard-nvim' --this is fancier than startify

@@ -25,3 +25,14 @@ require('gitsigns').setup()
 
 -- save all of my keymaps in one file
 require('mappings')
+
+-- on_attach_lsp_keymaps function contains keymaps so I defined it in mappings.lua and I use
+-- it in the nvimlsp_configs.lua file, so I must import lsp configs after
+-- mappings.
+if vim.g.wlsp == "nvim_lsp" then
+  require('nvimlsp_configs')
+end
+
+
+
+

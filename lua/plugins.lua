@@ -150,6 +150,7 @@ of this plugin after the plugins setup. ]]
 
   if vim.g.wlsp == "nvim_lsp" then
     use 'neovim/nvim-lspconfig' -- collection of configurations for built-in LSP client
+    use 'williamboman/nvim-lsp-installer' -- a package manager for language servers
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- lsp source for nvim-cmp
   end

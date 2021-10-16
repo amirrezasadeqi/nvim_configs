@@ -136,6 +136,11 @@ require("indent_blankline").setup {
   		            	nvim_notify configs
 #################################################################### ]]
 
+require("notify").setup({
+  -- timeout for notifications
+    timeout = 1000,
+})
+-- use nvim_notify as neovim notifier
 vim.notify = require("notify")
 
 

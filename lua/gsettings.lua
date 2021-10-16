@@ -137,6 +137,8 @@ require("indent_blankline").setup {
 #################################################################### ]]
 
 require("notify").setup({
+  -- Animation style
+  stages = "static",
   -- timeout for notifications
     timeout = 1000,
 })

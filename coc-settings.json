@@ -39,5 +39,9 @@
     "constructor": "  ",
     "value": "  ",
     "enumMember": "  "
-  }
+  },
+  "sumneko-lua.enableNvimLuaDev": true,
+  "sumneko-lua.inlayHints.refreshOnInsertMode": true,
+  "Lua.hint.setType": true,
+  "Lua.hint.paramName": "All"
 }

@@ -29,6 +29,10 @@ command! -bang -bar -nargs=? -complete=dir Cd
 " valid values are "coc" and "nvim_lsp".
 let g:wlsp = "coc"
 
+" Define a variable to choose between general and neovim-specfic sumneko lsp
+" configs. valid values are "general" and "neovim".
+let g:wlua = "neovim"
+
 " source configurations from lua files
 lua require('init')
 

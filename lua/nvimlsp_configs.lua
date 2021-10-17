@@ -25,6 +25,14 @@ for _, name in pairs(servers) do
 	end
 end
 
+-- folke/lua-dev setups for sumneko LSP
+local luadev = require("lua-dev").setup({
+  lspconfig = {
+    on_attach = on_attach_lsp_keymaps,
+    capabilities = capabilities,
+    },
+})
+
 -- on_server_ready sets up LSPs.
 lsp_installer.on_server_ready(function(server)
 	-- Default options
@@ -36,6 +44,13 @@ lsp_installer.on_server_ready(function(server)
 
   -- Table of custom LSP configuration. overrides are here!
 	local server_opts = {
+    ["sumneko_lua"] = function()
+      if vim.g.wlua == "neovim" then
+        return luadev
+      else
+        return default_opts
+      end
+    end,
 	}
 
 	-- check if any custom server_opts exist for the LSP server, if so, load them, if not, use our default_opts

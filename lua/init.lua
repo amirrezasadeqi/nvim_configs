@@ -31,6 +31,7 @@ require('mappings')
 -- mappings.
 if vim.g.wlsp == "nvim_lsp" then
   require('nvimcmp_configs')
+  require('autopairs_configs')
   require('nvimlsp_configs')
 end
 

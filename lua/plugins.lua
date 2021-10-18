@@ -164,6 +164,7 @@ of this plugin after the plugins setup. ]]
     use 'hrsh7th/vim-vsnip-integ' -- vsnip integration with autocompletion engines
     use 'hrsh7th/cmp-vsnip' -- vsnip source for nvim-cmp
     use 'hrsh7th/cmp-buffer' -- buffer source for cmp
+    use 'windwp/nvim-autopairs' -- autopairing braces
   end
 
 -- cover page for neovim 

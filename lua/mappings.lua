@@ -5,6 +5,7 @@
 vim.g.mapleader = '\\'
 vim.api.nvim_set_keymap('i', 'ii', '<ESC>', {} )
 vim.api.nvim_set_keymap('x', 'ii', '<ESC>', {} )
+vim.api.nvim_set_keymap('n', '<Leader>ii', ':noh<CR>', {} )
 vim.api.nvim_set_keymap('n', '<Leader>bd', ':bdelete!<CR>', {noremap = true, silent = true})
 
 
@@ -263,6 +264,16 @@ vim.api.nvim_set_keymap('n', '<Leader>mkk', '<Plug>BookmarkMoveUp', {silent = tr
 vim.api.nvim_set_keymap('n', '<Leader>mjj', '<Plug>BookmarkMoveDown', {silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>mg', '<Plug>BookmarkMoveToLine', {silent = true})
 
+--[[ ####################################################################
+  		            	vim-vsnip keymaps
+#################################################################### ]]
+
+--[[ Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+See https://github.com/hrsh7th/vim-vsnip/pull/50 ]]
+vim.api.nvim_set_keymap('n', '<Leader>vs', '<Plug>(vsnip-select-text)', {})
+vim.api.nvim_set_keymap('x', '<Leader>vs', '<Plug>(vsnip-select-text)', {})
+vim.api.nvim_set_keymap('n', '<Leader>vS', '<Plug>(vsnip-cut-text)', {})
+vim.api.nvim_set_keymap('x', '<Leader>vS', '<Plug>(vsnip-cut-text)', {})
 
 
 

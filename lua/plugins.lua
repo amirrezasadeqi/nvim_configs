@@ -50,14 +50,13 @@ return require('packer').startup(function()
 			 breez for it. ]]
   use 'preservim/tagbar'
   use 'joe-skb7/cscope-maps'
-  use 'honza/vim-snippets'
   use 'skywind3000/asynctasks.vim'
   use 'skywind3000/asyncrun.vim'
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat' --[[nice for extending '.' keymap for work with 
 			 keymaps of plugins. for example repeats surround
 			 keymaps for nested paranthese. ]]
---Move faster in your text. it is minimaller than easymotion so I use this.
+  --Move faster in your text. it is minimaller than easymotion so I use this.
   use 'justinmk/vim-sneak'
   use 'unblevable/quick-scope' --better for horizontal
   use 'matze/vim-move' -- Nice! move line visulas chars in four direction
@@ -71,7 +70,9 @@ return require('packer').startup(function()
 -- Plugin for ROS snippets
 -- the first plugin is more complete.
   use 'SweiLz/ROS-Snippets'
---use 'pijaro/ros-snippets'
+  --use 'pijaro/ros-snippets'
+  use 'rafamadriz/friendly-snippets' -- snippets recommended by vim-vsnip also compatible with coc
+  -- use 'honza/vim-snippets' -- using freindly snippets instead
 
 --[[Debugger Plugin
 UpdateRemotePlugins before the first time using sakhnik/nvim-gdb plugin is 
@@ -154,6 +155,10 @@ of this plugin after the plugins setup. ]]
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- lsp source for nvim-cmp
     use "folke/lua-dev.nvim"  -- provides docs for neovim lua api in autocompletion
+    use 'hrsh7th/vim-vsnip' -- nice snippet engine that supports vscode snippets also
+    use 'hrsh7th/vim-vsnip-integ' -- vsnip integration with autocompletion engines
+    use 'hrsh7th/cmp-vsnip' -- vsnip source for nvim-cmp
+    use 'hrsh7th/cmp-buffer' -- buffer source for cmp
   end
 
 -- cover page for neovim 

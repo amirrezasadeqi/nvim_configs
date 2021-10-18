@@ -30,6 +30,7 @@ require('mappings')
 -- it in the nvimlsp_configs.lua file, so I must import lsp configs after
 -- mappings.
 if vim.g.wlsp == "nvim_lsp" then
+  require('nvimcmp_configs')
   require('nvimlsp_configs')
 end
 

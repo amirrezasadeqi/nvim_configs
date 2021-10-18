@@ -11,7 +11,12 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   --use {'dracula/vim', as = 'dracula' } -- using Mofiqul instead which is in lua
   use {'Mofiqul/dracula.nvim', as = 'dracula'}
-  use {'joshdick/onedark.vim', as = 'onedark'}
+  -- use {'joshdick/onedark.vim', as = 'onedark'} -- using navarasu instead
+                                                  -- which is in lua and is better, for example in nvim-cmp
+  use {'navarasu/onedark.nvim'} -- has different styles
+  use {'tiagovla/tokyodark.nvim'} -- fancy dark theme
+  use {'bluz71/vim-moonfly-colors'} -- dark theme
+
   if vim.g.wlsp == "coc" then
     use {'neoclide/coc.nvim', branch = 'release'}
   end

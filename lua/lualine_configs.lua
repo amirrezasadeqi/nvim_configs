@@ -10,8 +10,10 @@ local gps = require("nvim-gps")
 
 require('lualine').setup {
   options = {
-    theme = 'dracula-nvim'
-    -- theme = 'onedark'
+    theme = 'onedark'
+    -- theme = 'tokyodark'
+    -- theme = 'moonfly'
+    -- theme = 'dracula-nvim'
   },
   sections = {
     lualine_c = {

@@ -165,6 +165,7 @@ of this plugin after the plugins setup. ]]
     use 'hrsh7th/cmp-vsnip' -- vsnip source for nvim-cmp
     use 'hrsh7th/cmp-buffer' -- buffer source for cmp
     use 'windwp/nvim-autopairs' -- autopairing braces
+    use 'onsails/lspkind-nvim' -- nice icons in nvim-cmp
   end
 
 -- cover page for neovim 

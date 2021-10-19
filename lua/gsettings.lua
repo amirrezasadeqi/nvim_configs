@@ -145,6 +145,13 @@ require("notify").setup({
 -- use nvim_notify as neovim notifier
 vim.notify = require("notify")
 
+--[[ ####################################################################
+  		            	cmp-spell configs
+#################################################################### ]]
+
+vim.opt.spell = true
+vim.opt.spelllang = {'en_us'}
+
 
 
 

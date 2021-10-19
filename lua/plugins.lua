@@ -168,6 +168,9 @@ of this plugin after the plugins setup. ]]
     use 'onsails/lspkind-nvim' -- nice icons in nvim-cmp
     use 'hrsh7th/cmp-path' -- system path source for nvim-cmp
     use 'hrsh7th/cmp-calc' -- replace answer of math calc
+    -- use 'kdheepak/cmp-latex-symbols' -- insertion of latex symbols
+    -- use 'ray-x/cmp-treesitter' -- cmp source for treesitter
+    -- use 'f3fora/cmp-spell' -- spell source for nvim-cmp
   end
 
 -- cover page for neovim 

@@ -60,6 +60,9 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
     { name = 'calc' },
+    -- { name = 'latex_symbols' },
+    -- { name = 'treesitter' },
+    -- { name = 'spell', keyword_length = 5 },
   }
 })
 

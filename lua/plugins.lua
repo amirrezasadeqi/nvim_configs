@@ -21,6 +21,8 @@ return require('packer').startup(function()
     use {'neoclide/coc.nvim', branch = 'release'}
   end
 
+  use {'antoinemadec/FixCursorHold.nvim', config = [[vim.g.cursorhold_updatetime = 100]] } -- Fix CursorHold Performance for vim/neovim
+
   -- use 'jackguo380/vim-lsp-cxx-highlight' -- using treesitter highlight instead
   -- use 'vim-airline/vim-airline' -- using lualine instead which is in lua
   -- use 'vim-airline/vim-airline-themes'

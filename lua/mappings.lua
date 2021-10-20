@@ -275,6 +275,11 @@ vim.api.nvim_set_keymap('x', '<Leader>vs', '<Plug>(vsnip-select-text)', {})
 vim.api.nvim_set_keymap('n', '<Leader>vS', '<Plug>(vsnip-cut-text)', {})
 vim.api.nvim_set_keymap('x', '<Leader>vS', '<Plug>(vsnip-cut-text)', {})
 
+--[[###########################################################
+--		              undotree keymaps
+--###########################################################]]
+
+vim.api.nvim_set_keymap('n', '<Leader>ut', ':UndotreeToggle<CR>', {noremap = true})
 
 
 

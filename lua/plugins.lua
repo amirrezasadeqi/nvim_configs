@@ -42,6 +42,8 @@ return require('packer').startup(function()
     requires = 'kyazdani42/nvim-web-devicons'
   }
 
+  use {'mbbill/undotree', cmd = {'UndotreeToggle'}, config = [[require('undotree_configs')]]} -- The undo history visualizer
+
   use 'tpope/vim-fugitive'
   use { 		-- anothre git plugin with many features which i need UI only.
     'lewis6991/gitsigns.nvim',

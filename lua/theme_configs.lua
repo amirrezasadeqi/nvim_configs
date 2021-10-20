@@ -7,6 +7,17 @@ vim.g.onedark_toggle_style_keymap = '<nop>'
 vim.cmd[[colorscheme onedark]]
 
 --###################################################################
+--			Colorscheme fulle5/onedark Setup
+--###################################################################
+
+--[[ require('onedark').setup({
+    -- function_style = "italic",
+    sidebars = {"qf", "vista_kind", "terminal", "packer"},
+    highlight_linenumber = true,
+    hide_inactive_statusline = false,
+}) ]]
+
+--###################################################################
 --			Colorscheme tokyodark Setup
 --###################################################################
 

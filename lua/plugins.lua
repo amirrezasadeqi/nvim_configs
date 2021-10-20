@@ -14,6 +14,7 @@ return require('packer').startup(function()
   -- use {'joshdick/onedark.vim', as = 'onedark'} -- using navarasu instead
                                                   -- which is in lua and is better, for example in nvim-cmp
   use {'navarasu/onedark.nvim'} -- has different styles
+  -- use {'ful1e5/onedark.nvim'} -- another onedark
   use {'tiagovla/tokyodark.nvim'} -- fancy dark theme
   use {'bluz71/vim-moonfly-colors'} -- dark theme
 

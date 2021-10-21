@@ -12,6 +12,8 @@
 " and highlighting have not proper lua interface yet, so I use init.vim for
 " them.
 
+lua require('impatient').enable_profile() -- keep it near the start, as lewis did.
+
 " I found the bellow command from the following link:
 " 'https://github.com/junegunn/fzf.vim/issues/251#issuecomment-769787221'
 " using this we can have option to open/cd to a directory with fzf, so we can
@@ -41,6 +43,8 @@ if g:wlsp == "coc" " if using coc source this file
   source ~/.config/nvim/vim_scripts/coc_configs.vim 
 endif
 source ~/.config/nvim/vim_scripts/tagbar_configs.vim
+
+lua require('packer_compiled') -- For impatient configuration. I think this must be at the end
 
 "====================================================================
 " Here is the configs from the plugins that I used before porting of con-

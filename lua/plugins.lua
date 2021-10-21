@@ -24,6 +24,12 @@ return require('packer').startup(function()
 
   use {'antoinemadec/FixCursorHold.nvim', config = [[vim.g.cursorhold_updatetime = 100]] } -- Fix CursorHold Performance for vim/neovim
 
+  -- The expectation is that a form of this plugin will eventually be merged into
+  -- Neovim core via a PR. This plugin serves as a way for impatient users to
+  -- speed up there Neovim 0.5 until the PR is merged and included in a following
+  -- Neovim release at which point this plugin will be redundant.
+  use {'lewis6991/impatient.nvim'} -- Improve startup time for neovim
+
   -- use 'jackguo380/vim-lsp-cxx-highlight' -- using treesitter highlight instead
   -- use 'vim-airline/vim-airline' -- using lualine instead which is in lua
   -- use 'vim-airline/vim-airline-themes'
@@ -182,6 +188,10 @@ of this plugin after the plugins setup. ]]
   use 'glepnir/dashboard-nvim' --this is fancier than startify
   --use 'mhinz/vim-startify'
 
+  config = {
+    -- Move to lua dir so impatient.nvim can cache it
+    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+  }
 
 end)
 

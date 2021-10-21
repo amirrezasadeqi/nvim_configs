@@ -49,6 +49,7 @@ return require('packer').startup(function()
   }
 
   use {'mbbill/undotree', cmd = {'UndotreeToggle'}, config = [[require('undotree_configs')]]} -- The undo history visualizer
+  use {'tversteeg/registers.nvim'} -- preview and apply registers
 
   use 'tpope/vim-fugitive'
   use { 		-- anothre git plugin with many features which i need UI only.

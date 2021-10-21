@@ -30,6 +30,13 @@ return require('packer').startup(function()
   -- Neovim release at which point this plugin will be redundant.
   use {'lewis6991/impatient.nvim'} -- Improve startup time for neovim
 
+  --[[ use { -- spell checker that uses treesitter, so just checks the comments not code.
+    'lewis6991/spellsitter.nvim',
+    config = function()
+      require('spellsitter').setup()
+    end
+  } ]]
+
   -- use 'jackguo380/vim-lsp-cxx-highlight' -- using treesitter highlight instead
   -- use 'vim-airline/vim-airline' -- using lualine instead which is in lua
   -- use 'vim-airline/vim-airline-themes'

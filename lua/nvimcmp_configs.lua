@@ -19,7 +19,16 @@ local lspkind = require('lspkind')
 
 cmp.setup({
   formatting = {
-    format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+    format = lspkind.cmp_format({with_text = true, maxwidth = 50, menu = ({
+      nvim_lsp = '[LSP]',
+      vsnip = '[Vsnip]',
+      buffer = '[Buffer]',
+      path = '[Path]',
+      calc = '[Calc]',
+      latex_symbols = '[LaTex]',
+      treesitter = '[TreeSitter]',
+      spell = '[Spell]',
+    })})
   },
   snippet = {
     expand = function(args)
@@ -57,7 +66,7 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
-    { name = 'buffer' },
+    { name = 'buffer', keyword_length = 5 },
     { name = 'path' },
     { name = 'calc' },
     -- { name = 'latex_symbols' },

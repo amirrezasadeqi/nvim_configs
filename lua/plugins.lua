@@ -84,6 +84,7 @@ return require('packer').startup(function(use)
   use 'justinmk/vim-sneak'
   use 'unblevable/quick-scope' --better for horizontal
   use 'matze/vim-move' -- Nice! move line visulas chars in four direction
+  use {'wellle/targets.vim'} -- Vim plugin that provides additional text objects
   use 'b3nj5m1n/kommentary' --nice plugin for commenting
 
   use 'szw/vim-maximizer' --[[maximize a window with <F3>

@@ -175,6 +175,14 @@ of this plugin after the plugins setup. ]]
       requires = {'MattesGroeger/vim-bookmarks'}
   }
 
+  --[[ use {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require"telescope".load_extension("frecency")
+    end,
+    requires = {"tami5/sqlite.lua"}
+  } ]]
+
   --use 'ThePrimeagen/refactoring.nvim' --This is not complete yet and i will use it in future.
 
   if vim.g.wlsp == "nvim_lsp" then

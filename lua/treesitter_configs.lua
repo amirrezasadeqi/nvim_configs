@@ -8,6 +8,11 @@ require 'nvim-treesitter.configs'.setup {
 	indent = {
 		enable = true,
 	},
+  --[[ matchup = {
+    enable = true,
+    -- list of disabled languages
+    -- disable = { "c", "ruby" },
+  }, ]]
   textobjects = {
     select = {
       enable = true,

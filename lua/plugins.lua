@@ -5,7 +5,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd 'packadd packer.nvim'
 end
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
 
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -136,11 +136,13 @@ note that you must uncomment the setup function
 of this plugin after the plugins setup. ]]
 -- use 'norcalli/nvim-colorizer.lua'
 
--- Treesitter to convert neovim to a full IDE in future!
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }  -- We recommend updating the parsers on update
-  use 'nvim-treesitter/playground'  -- used for developing tools with treesitter
+  -- Treesitter to convert neovim to a full IDE in future!
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- We recommend updating the parsers on update
+  use {'nvim-treesitter/nvim-treesitter-textobjects'} -- adds text objects like function, class from treesitter
+  use {'nvim-treesitter/nvim-treesitter-refactor'} -- adds highlighting of under-cursor symbol and its usages and S-rename and some more
+  use {'nvim-treesitter/playground'} -- used for developing tools with treesitter
   use {'SmiteshP/nvim-gps'}
-  use 'p00f/nvim-ts-rainbow'  -- colorizing the nested braces
+  use {'p00f/nvim-ts-rainbow'} -- colorizing the nested braces
 
 -- Telescope and its extensions
   use {

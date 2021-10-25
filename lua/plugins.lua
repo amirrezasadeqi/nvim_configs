@@ -213,8 +213,18 @@ of this plugin after the plugins setup. ]]
   use 'glepnir/dashboard-nvim' --this is fancier than startify
   --use 'mhinz/vim-startify'
 
+  -- Profiling
+  use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 20]]}
+
   config = {
     -- Move to lua dir so impatient.nvim can cache it
+    -- Create a symbolic-link of plugin/packer_compiled.lua file in lua
+    -- directory by running bellow command in the lua directory, so the lua
+    -- require command in init.vim file can find this file and impatient can
+    -- cache it(as I understood! and I don't know why compile_path option of
+    -- packer does not work and create the compiled file in lua directory and
+    -- this symbolic-link is my solution!):
+    -- in lua directory run: "ln -s ../plugin/packer_compiled.lua"
     compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
   }
 

@@ -58,12 +58,17 @@ return require('packer').startup(function(use)
   use {'mbbill/undotree', cmd = {'UndotreeToggle'}, config = [[require('undotree_configs')]]} -- The undo history visualizer
   use {'tversteeg/registers.nvim'} -- preview and apply registers
 
-  use 'tpope/vim-fugitive'
-  use { 		-- anothre git plugin with many features which i need UI only.
+  use {'tpope/vim-fugitive'}
+  use { -- anothre git plugin with many features which i need UI only.
     'lewis6991/gitsigns.nvim',
     requires = {
       'nvim-lua/plenary.nvim'
     }
+  }
+  use {'TimUntersberger/neogit',
+    cmd = 'Neogit',
+    config = [[require('neogit_configs')]],
+    requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'}
   }
   use 'benmills/vimux' -- Vim + Tmux = Love
   --use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end}

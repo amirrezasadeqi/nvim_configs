@@ -42,7 +42,7 @@ lua require('init')
 if g:wlsp == "coc" " if using coc source this file
   source ~/.config/nvim/vim_scripts/coc_configs.vim 
 endif
-source ~/.config/nvim/vim_scripts/tagbar_configs.vim
+" source ~/.config/nvim/vim_scripts/tagbar_configs.vim
 
 lua require('packer_compiled') -- For impatient configuration. I think this must be at the end
 

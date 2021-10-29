@@ -8,15 +8,15 @@ end
 return require('packer').startup(function(use)
 
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  --use {'dracula/vim', as = 'dracula' } -- using Mofiqul instead which is in lua
-  use {'Mofiqul/dracula.nvim', as = 'dracula'}
-  -- use {'joshdick/onedark.vim', as = 'onedark'} -- using navarasu instead
-                                                  -- which is in lua and is better, for example in nvim-cmp
-  use {'navarasu/onedark.nvim'} -- has different styles
-  -- use {'ful1e5/onedark.nvim'} -- another onedark
-  use {'tiagovla/tokyodark.nvim'} -- fancy dark theme
-  use {'bluz71/vim-moonfly-colors'} -- dark theme
+  use {'wbthomason/packer.nvim'}
+  use {'dracula/vim', event = 'VimEnter', config = [[require('theme_configs')]], as = 'dracula', disable = true } -- using Mofiqul instead which is in lua
+  use {'Mofiqul/dracula.nvim', event = 'VimEnter', config = [[require('theme_configs')]], as = 'dracula'}
+  -- using navarasu instead which is in lua and is better, for example in nvim-cmp
+  use {'joshdick/onedark.vim', event = 'VimEnter', config = [[require('theme_configs')]], as = 'onedark', disable = true}
+  use {'navarasu/onedark.nvim', event = 'VimEnter', config = [[require('theme_configs')]]} -- has different styles
+  use {'ful1e5/onedark.nvim', event = 'VimEnter', config = [[require('theme_configs')]], disable = true} -- another onedark
+  use {'tiagovla/tokyodark.nvim', event = 'VimEnter', config = [[require('theme_configs')]]} -- fancy dark theme
+  use {'bluz71/vim-moonfly-colors', event = 'VimEnter', config = [[require('theme_configs')]]} -- dark theme
 
   if vim.g.wlsp == "coc" then
     use {'neoclide/coc.nvim', branch = 'release'}
@@ -30,35 +30,40 @@ return require('packer').startup(function(use)
   -- Neovim release at which point this plugin will be redundant.
   use {'lewis6991/impatient.nvim'} -- Improve startup time for neovim
 
-  --[[ use { -- spell checker that uses treesitter, so just checks the comments not code.
+  use { -- spell checker that uses treesitter, so just checks the comments not code.
     'lewis6991/spellsitter.nvim',
     config = function()
       require('spellsitter').setup()
-    end
-  } ]]
-
-  -- use 'jackguo380/vim-lsp-cxx-highlight' -- using treesitter highlight instead
-  -- use 'vim-airline/vim-airline' -- using lualine instead which is in lua
-  -- use 'vim-airline/vim-airline-themes'
-  use {
-  'hoob3rt/lualine.nvim',
-  requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    end,
+    disable = true
   }
-  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+
+  use {'jackguo380/vim-lsp-cxx-highlight', disable = true} -- using treesitter highlight instead
+  use {'vim-airline/vim-airline', disable = true} -- using lualine instead which is in lua
+  use {'vim-airline/vim-airline-themes', disable = true}
+
+  use {
+    'hoob3rt/lualine.nvim',
+    event = 'VimEnter',
+    config = [[require('lualine_configs')]],
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+  use {'akinsho/bufferline.nvim', event = 'VimEnter', config = [[require('bufferline_configs')]], requires = 'kyazdani42/nvim-web-devicons'}
   use 'rcarriga/nvim-notify'  -- nice notification plugin
   use 'lukas-reineke/indent-blankline.nvim'  -- adding indentation guide lines, space dots and CRs
 
-  -- use 'ryanoasis/vim-devicons' -- using nvim-web-devicons instead which is in lua
-  -- use 'preservim/nerdtree' -- using neovim-tree instead which is in lua
+  use {'ryanoasis/vim-devicons', disable = true} -- using nvim-web-devicons instead which is in lua
+  use {'preservim/nerdtree', disable = true} -- using neovim-tree instead which is in lua
+
   use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons'
   }
 
   use {'mbbill/undotree', cmd = {'UndotreeToggle'}, config = [[require('undotree_configs')]]} -- The undo history visualizer
-  use {'tversteeg/registers.nvim'} -- preview and apply registers
+  use {'tversteeg/registers.nvim', keys = {{'n', '"'}, {'i', '<c-R>'}}} -- preview and apply registers
 
-  use {'tpope/vim-fugitive'}
+  use {'tpope/vim-fugitive', cmd = { 'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull' }}
   use { -- anothre git plugin with many features which i need UI only.
     'lewis6991/gitsigns.nvim',
     requires = {
@@ -70,46 +75,47 @@ return require('packer').startup(function(use)
     config = [[require('neogit_configs')]],
     requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'}
   }
-  use 'benmills/vimux' -- Vim + Tmux = Love
-  --use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end}
-  --[[use 'junegunn/fzf.vim' --[[a wrapper for more fzf functionality like what coc
-			 plugins like coc-tasks does. coc-fzf-preview is the
-			 alternative but at the momment is not mature.
-			 fzf.vim works like a charm and linux kernel is a
-			 breez for it. ]]
-  use 'preservim/tagbar'
-  use 'joe-skb7/cscope-maps'
-  use 'skywind3000/asynctasks.vim'
-  use 'skywind3000/asyncrun.vim'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-repeat' --[[nice for extending '.' keymap for work with 
-			 keymaps of plugins. for example repeats surround
-			 keymaps for nested paranthese. ]]
-  --Move faster in your text. it is minimaller than easymotion so I use this.
-  use 'justinmk/vim-sneak'
-  use 'unblevable/quick-scope' --better for horizontal
-  use 'matze/vim-move' -- Nice! move line visulas chars in four direction
-  use {'wellle/targets.vim'} -- Vim plugin that provides additional text objects
-  -- use {'andymass/vim-matchup', setup = [[require('matchup_configs')]], event = 'VimEnter'} -- a little extends vim's %
-  use 'b3nj5m1n/kommentary' --nice plugin for commenting
+  use {'benmills/vimux', keys = {{'n', '<Leader>tmr'}, {'n', '<Leader>tml'}, {'n', '<Leader>tmc'}}} -- Vim + Tmux = Love
+  use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end, disable = true}
+  use {'junegunn/fzf.vim', disable = true} --[[a wrapper for more fzf functionality like what coc
+		plugins like coc-tasks does. coc-fzf-preview is the
+		alternative but at the momment is not mature.
+		fzf.vim works like a charm and linux kernel is a
+		breez for it.]]
 
-  use 'szw/vim-maximizer' --[[maximize a window with <F3>
-			  it has some <C-o> which has 
-			  some strange behavior but the
-			  <F3> only works well. ]]
+  use {'preservim/tagbar', cmd = {'TagbarToggle'}, config = [[vim.cmd('source ~/.config/nvim/vim_scripts/tagbar_configs.vim')]]}
+  use {'joe-skb7/cscope-maps'}
+  use {'skywind3000/asynctasks.vim'}
+  use {'skywind3000/asyncrun.vim'}
+  use {'tpope/vim-surround'}
+  use {'tpope/vim-repeat'} --[[nice for extending '.' keymap for work with
+		keymaps of plugins. for example repeats surround
+		keymaps for nested paranthese. ]]
+  -- Move faster in your text. it is minimaller than easymotion so I use this.
+  use {'justinmk/vim-sneak', setup = [[require('sneak_configs')]], event = 'VimEnter'}
+  use {'unblevable/quick-scope', setup = [[require('quickScope_configs')]], keys = {'f', 'F', 't', 'T'}} --better for horizontal
+  use {'matze/vim-move'} -- Nice! move line visulas chars in four direction
+  use {'wellle/targets.vim'} -- Vim plugin that provides additional text objects
+  use {'andymass/vim-matchup', setup = [[require('matchup_configs')]], event = 'VimEnter', disable = true} -- a little extends vim's %
+  use {'b3nj5m1n/kommentary', keys = {{'n', 'gcc'}, {'n', 'gc'}, {'v', 'gc'}}} --nice plugin for commenting
+
+  use {'szw/vim-maximizer'} --[[maximize a window with <F3>
+    it has some <C-o> which has
+    some strange behavior but the
+    <F3> only works well. ]]
 
 -- Plugin for ROS snippets
 -- the first plugin is more complete.
-  use 'SweiLz/ROS-Snippets'
-  --use 'pijaro/ros-snippets'
-  use 'rafamadriz/friendly-snippets' -- snippets recommended by vim-vsnip also compatible with coc
-  -- use 'honza/vim-snippets' -- using freindly snippets instead
+  use {'SweiLz/ROS-Snippets'}
+  use {'pijaro/ros-snippets', disable = true}
+  use {'rafamadriz/friendly-snippets'} -- snippets recommended by vim-vsnip also compatible with coc
+  use {'honza/vim-snippets', disable = true} -- using freindly snippets instead
 
 --[[Debugger Plugin
-UpdateRemotePlugins before the first time using sakhnik/nvim-gdb plugin is 
+UpdateRemotePlugins before the first time using sakhnik/nvim-gdb plugin is
 necessary. ]]
 
---use 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+use {'sakhnik/nvim-gdb', run = ':!./install.sh', disable = true}
 
 --[[Actually I will use vimspector plugin. a greate plugin for debugging
  different languages with ease. the sakhnik/nvim-gdb is good for gdb and pdb
@@ -125,7 +131,7 @@ necessary. ]]
  	debugger and the plugin.
  	4. In the root workspace you must have a '.vimspector.json' file for
  	that project. ]]
-  use 'puremourning/vimspector'
+  use {'puremourning/vimspector', keys = {{'n', '<F5>'}, {'n', '<F9>'}}}
 
 --[[ A plugin for partially running codes like we do for python in vscode and
  jupyter notebooks:
@@ -133,23 +139,33 @@ necessary. ]]
  Note from the repository of sniprun:
  the klepto package: 'pip install --user klepto' if they use python with REPL.
  (Python REPL behaviour is enabled by default, but klepto has to be manually installed) ]]
-  use {'michaelb/sniprun', run = 'bash install.sh'}
+  use {'michaelb/sniprun', keys = {{'n', '<Leader><Leader>sl'}, {'v', '<Leader><Leader>sv'}, {'n', '<Leader><Leader>st'}, {'n', '<Leader><Leader>sr'}}, run = 'bash install.sh'}
 
--- Color previews for CSS
-use 'ap/vim-css-color'
+  -- Color previews for CSS
+  use {'ap/vim-css-color', event = 'BufEnter'}
 
 --[[lua written alternative for color preview
-note that you must uncomment the setup function 
+note that you must uncomment the setup function
 of this plugin after the plugins setup. ]]
--- use 'norcalli/nvim-colorizer.lua'
+  use {'norcalli/nvim-colorizer.lua', disable = true}
 
   -- Treesitter to convert neovim to a full IDE in future!
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- We recommend updating the parsers on update
-  use {'nvim-treesitter/nvim-treesitter-textobjects'} -- adds text objects like function, class from treesitter
-  use {'nvim-treesitter/nvim-treesitter-refactor'} -- adds highlighting of under-cursor symbol and its usages and S-rename and some more
-  use {'nvim-treesitter/playground'} -- used for developing tools with treesitter
-  use {'SmiteshP/nvim-gps'}
-  use {'p00f/nvim-ts-rainbow'} -- colorizing the nested braces
+  use {'nvim-treesitter/nvim-treesitter',
+    event = 'VimEnter',
+    requires = {
+      -- adds text objects like function, class from treesitter
+      {'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter'},
+      -- adds highlighting of under-cursor symbol and its usages and S-rename and some more
+      {'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter-textobjects'},
+      -- used for developing tools with treesitter
+      {'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle'},
+      {'SmiteshP/nvim-gps'},
+      -- colorizing the nested braces
+      {'p00f/nvim-ts-rainbow', after = 'nvim-treesitter'}
+    },
+    config = [[require('treesitter_configs')]],
+    run = ':TSUpdate' -- We recommend updating the parsers on update
+  }
 
 -- Telescope and its extensions
   use {
@@ -180,41 +196,77 @@ of this plugin after the plugins setup. ]]
       requires = {'MattesGroeger/vim-bookmarks'}
   }
 
-  --[[ use {
+  use {
     "nvim-telescope/telescope-frecency.nvim",
     config = function()
       require"telescope".load_extension("frecency")
     end,
-    requires = {"tami5/sqlite.lua"}
-  } ]]
+    requires = {"tami5/sqlite.lua"},
+    disable = true
+  }
 
-  --use 'ThePrimeagen/refactoring.nvim' --This is not complete yet and i will use it in future.
+  use {'ThePrimeagen/refactoring.nvim', disable = true} --This is not complete yet and i will use it in future.
 
   if vim.g.wlsp == "nvim_lsp" then
-    use 'neovim/nvim-lspconfig' -- collection of configurations for built-in LSP client
-    use 'williamboman/nvim-lsp-installer' -- a package manager for language servers
-    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-    use 'hrsh7th/cmp-nvim-lsp' -- lsp source for nvim-cmp
-    use "folke/lua-dev.nvim"  -- provides docs for neovim lua api in autocompletion
-    use 'hrsh7th/vim-vsnip' -- nice snippet engine that supports vscode snippets also
-    use 'hrsh7th/vim-vsnip-integ' -- vsnip integration with autocompletion engines
-    use 'hrsh7th/cmp-vsnip' -- vsnip source for nvim-cmp
-    use 'hrsh7th/cmp-buffer' -- buffer source for cmp
-    use 'windwp/nvim-autopairs' -- autopairing braces
-    use 'onsails/lspkind-nvim' -- nice icons in nvim-cmp
-    use 'hrsh7th/cmp-path' -- system path source for nvim-cmp
-    use 'hrsh7th/cmp-calc' -- replace answer of math calc
-    -- use 'kdheepak/cmp-latex-symbols' -- insertion of latex symbols
-    -- use 'ray-x/cmp-treesitter' -- cmp source for treesitter
-    -- use 'f3fora/cmp-spell' -- spell source for nvim-cmp
+    use {'neovim/nvim-lspconfig', after = 'cmp-nvim-lsp', config = [[require('nvimlsp_configs')]]} -- collection of configurations for built-in LSP client
+    use {'williamboman/nvim-lsp-installer'} -- a package manager for language servers
+    use {'hrsh7th/nvim-cmp', event = 'InsertEnter *', config = [[require('nvimcmp_configs')]]} -- Autocompletion plugin
+    use {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'} -- lsp source for nvim-cmp
+    use {'folke/lua-dev.nvim'}  -- provides docs for neovim lua api in autocompletion
+    use {'hrsh7th/vim-vsnip', event = 'InsertEnter'} -- nice snippet engine that supports vscode snippets also
+    use {'hrsh7th/vim-vsnip-integ', after = 'vim-vsnip'} -- vsnip integration with autocompletion engines
+    use {'hrsh7th/cmp-vsnip', after = 'nvim-cmp'} -- vsnip source for nvim-cmp
+    use {'hrsh7th/cmp-buffer', after = 'nvim-cmp'} -- buffer source for cmp
+    use {'hrsh7th/cmp-cmdline', after = 'nvim-cmp'} -- command source for cmp
+    use {'hrsh7th/cmp-path', after = 'nvim-cmp'} -- system path source for nvim-cmp
+    use {'windwp/nvim-autopairs', after = 'nvim-cmp', config = [[require('autopairs_configs')]]} -- autopairing braces
+    use {'onsails/lspkind-nvim'} -- nice icons in nvim-cmp
+    use {'hrsh7th/cmp-calc', after = 'nvim-cmp'} -- replace answer of math calc
+    use {'kdheepak/cmp-latex-symbols', after = 'nvim-cmp', disable = true} -- insertion of latex symbols
+    use {'ray-x/cmp-treesitter', after = 'nvim-cmp', disable = true} -- cmp source for treesitter
+    use {'f3fora/cmp-spell', after = 'nvim-cmp', disable = true} -- spell source for nvim-cmp
+    use {'tzachar/cmp-tabnine', -- tabnine source for nvim-cmp
+      run='./install.sh',
+      config = function ()
+        require('cmp_tabnine.config'):setup({
+          max_lines = 1000,
+          max_num_results = 20,
+          sort = true,
+          run_on_every_keystroke = true,
+          snippet_placeholder = '..',
+        })
+      end,
+      after = 'nvim-cmp',
+      disable = true
+    }
+    use {
+      'rmagatti/goto-preview',
+      config = function()
+        require('goto-preview').setup {}
+      end,
+    }
+    use {
+      "ray-x/lsp_signature.nvim",
+      config = function ()
+        require('lsp_signature').setup()
+      end
+    }
+    use {
+      'glepnir/lspsaga.nvim',
+      config = function ()
+        require('lspsaga').init_lsp_saga()
+      end,
+      cmd = {'Lspsaga'},
+      disable = true
+    }
   end
 
--- cover page for neovim 
-  use 'glepnir/dashboard-nvim' --this is fancier than startify
-  --use 'mhinz/vim-startify'
+-- cover page for neovim
+  use {'glepnir/dashboard-nvim'} --this is fancier than startify
+  use {'mhinz/vim-startify', disable = true}
 
   -- Profiling
-  use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 20]]}
+  use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 100]]}
 
   config = {
     -- Move to lua dir so impatient.nvim can cache it
@@ -229,15 +281,6 @@ of this plugin after the plugins setup. ]]
   }
 
 end)
-
-
-
-
-
-
-
-
-
 
 
 

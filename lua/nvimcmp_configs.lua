@@ -18,12 +18,16 @@ local cmp = require'cmp'
 local lspkind = require('lspkind')
 
 cmp.setup({
+  experimental = {
+    ghost_text = true,
+  },
   formatting = {
     format = lspkind.cmp_format({with_text = true, maxwidth = 50, menu = ({
       nvim_lsp = '[LSP]',
       vsnip = '[Vsnip]',
       buffer = '[Buffer]',
       path = '[Path]',
+      cmp_tabnine = '[TN]',
       calc = '[Calc]',
       latex_symbols = '[LaTex]',
       treesitter = '[TreeSitter]',
@@ -36,13 +40,17 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    -- ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping({
+      i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+      c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace , select = true }),
     }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -63,15 +71,35 @@ cmp.setup({
       end
     end, { "i", "s" }),
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
     { name = 'buffer', keyword_length = 5 },
     { name = 'path' },
+    { name = 'cmp_tabnine' },
     { name = 'calc' },
     -- { name = 'latex_symbols' },
     -- { name = 'treesitter' },
     -- { name = 'spell', keyword_length = 5 },
-  }
+  })
 })
+
+-- Use buffer source for `/`.
+cmp.setup.cmdline('/', {
+  sources = cmp.config.sources({
+    { name = 'buffer' }
+  })
+})
+
+-- Use cmdline & path source for ':'.
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+
+
 

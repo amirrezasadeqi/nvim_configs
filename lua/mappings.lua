@@ -57,12 +57,12 @@ vim.api.nvim_set_keymap('n', '<leader>cn', ':DashboardNewFile<CR>', {silent = tr
 --		              vim-sneak keymaps
 --###########################################################]]
 
-vim.api.nvim_set_keymap('', '<leader><leader>s', '<Plug>Sneak_s', {})
-vim.api.nvim_set_keymap('', '<leader><leader>S', '<Plug>Sneak_S', {})
-vim.api.nvim_set_keymap('', '<leader><leader>f', '<Plug>Sneak_f', {})
-vim.api.nvim_set_keymap('', '<leader><leader>F', '<Plug>Sneak_F', {})
-vim.api.nvim_set_keymap('', '<leader><leader>t', '<Plug>Sneak_t', {})
-vim.api.nvim_set_keymap('', '<leader><leader>T', '<Plug>Sneak_T', {})
+vim.api.nvim_set_keymap('', '<leader>sn', '<Plug>Sneak_s', {})
+vim.api.nvim_set_keymap('', '<leader>Sn', '<Plug>Sneak_S', {})
+vim.api.nvim_set_keymap('', '<leader>fn', '<Plug>Sneak_f', {})
+vim.api.nvim_set_keymap('', '<leader>Fn', '<Plug>Sneak_F', {})
+vim.api.nvim_set_keymap('', '<leader>tn', '<Plug>Sneak_t', {})
+vim.api.nvim_set_keymap('', '<leader>Tn', '<Plug>Sneak_T', {})
 
 
 --[[ ===================================================================
@@ -199,7 +199,7 @@ vim.api.nvim_set_keymap('n', '<Leader>tmc', ':VimuxCloseRunner<CR>', {noremap = 
 --[[ ####################################################################
   			              Tagbar keymaps
 #################################################################### ]]
-vim.api.nvim_set_keymap('n', '<leader><F8>', ':TagbarToggle<CR>', {})
+-- vim.api.nvim_set_keymap('n', '<leader>tag', ':TagbarToggle<CR>', {})
 
 
 --[[ ####################################################################
@@ -280,6 +280,16 @@ vim.api.nvim_set_keymap('x', '<Leader>vS', '<Plug>(vsnip-cut-text)', {})
 --###########################################################]]
 
 vim.api.nvim_set_keymap('n', '<Leader>ut', ':UndotreeToggle<CR>', {noremap = true})
+
+--[[###########################################################
+--		              goto-preview keymaps
+--###########################################################]]
+
+if vim.g.wlsp == 'nvim_lsp' then
+  vim.api.nvim_set_keymap("n", "<leader>gp", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", {noremap=true})
+  vim.api.nvim_set_keymap("n", "<leader>gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", {noremap=true})
+  vim.api.nvim_set_keymap("n", "<leader>gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", {noremap=true})
+end
 
 
 

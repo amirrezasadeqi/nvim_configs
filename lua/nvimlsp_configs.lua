@@ -58,7 +58,7 @@ lsp_installer.on_server_ready(function(server)
 
 	-- check if any custom server_opts exist for the LSP server, if so, load them, if not, use our default_opts
 	server:setup(server_opts[server.name] and server_opts[server.name]() or default_opts)
-	-- vim.cmd([[ do User LspAttachBuffers ]])
+	vim.cmd([[ do User LspAttachBuffers ]])
 end)
 
 

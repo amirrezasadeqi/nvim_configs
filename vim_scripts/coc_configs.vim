@@ -96,7 +96,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " List of coc extensions to install automatically
-let g:coc_global_extensions = ['coc-json', 'coc-sumneko-lua', 'coc-clangd', 'coc-cmake', 'coc-pairs', 'coc-tasks', 'coc-snippets', 'coc-texlab', 'coc-sh', 'coc-marketplace', 'coc-python', 'coc-fzf-preview', 'coc-xml', 'coc-yaml']
+let g:coc_global_extensions = ['coc-json', 'coc-sumneko-lua', 'coc-clangd', 'coc-cmake', 'coc-pairs', 'coc-tasks', 'coc-snippets', 'coc-texlab', 'coc-sh', 'coc-marketplace', 'coc-python', 'coc-fzf-preview', 'coc-xml', 'coc-yaml', 'coc-tabnine']
 
 
 

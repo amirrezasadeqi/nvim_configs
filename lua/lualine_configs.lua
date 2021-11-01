@@ -12,6 +12,7 @@ require('lualine').setup {
   options = {
     theme = 'onedark'
     -- theme = 'tokyodark'
+    -- theme = 'tokyonight'
     -- theme = 'moonfly'
     -- theme = 'nightfox'
     -- theme = 'material-nvim'

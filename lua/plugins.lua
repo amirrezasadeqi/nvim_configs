@@ -15,6 +15,13 @@ return require('packer').startup(function(use)
   -- in it.
   use {'Mofiqul/dracula.nvim', as = 'dracula'}
   use {'tiagovla/tokyodark.nvim'}
+  use {
+    'folke/tokyonight.nvim',
+    --[[ config = function ()
+      vim.g.tokyonight_style = 'night'
+      vim.cmd('colorscheme tokyonight')
+    end ]]
+  }
   use {'bluz71/vim-moonfly-colors'}
   use {'EdenEast/nightfox.nvim'} -- require('nightfox').load(<fox_name>)
   use {'rmehri01/onenord.nvim'}
@@ -36,7 +43,7 @@ return require('packer').startup(function(use)
   }
   use {'navarasu/onedark.nvim',
     config = function()
-      vim.g.onedark_style = 'deep'
+      vim.g.onedark_style = 'warmer'
       vim.g.onedark_toggle_style_keymap = '<nop>'
       require('onedark').setup()
     end

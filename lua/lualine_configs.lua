@@ -13,6 +13,11 @@ require('lualine').setup {
     theme = 'onedark'
     -- theme = 'tokyodark'
     -- theme = 'moonfly'
+    -- theme = 'nightfox'
+    -- theme = 'material-nvim'
+    -- theme = 'onenord'
+    -- theme = 'nord'
+    -- theme = 'rose-pine'
     -- theme = 'dracula-nvim'
   },
   sections = {

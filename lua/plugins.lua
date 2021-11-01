@@ -9,14 +9,38 @@ return require('packer').startup(function(use)
 
   -- Packer can manage itself
   use {'wbthomason/packer.nvim'}
-  use {'dracula/vim', event = 'VimEnter', config = [[require('theme_configs')]], as = 'dracula', disable = true } -- using Mofiqul instead which is in lua
-  use {'Mofiqul/dracula.nvim', event = 'VimEnter', config = [[require('theme_configs')]], as = 'dracula'}
-  -- using navarasu instead which is in lua and is better, for example in nvim-cmp
-  use {'joshdick/onedark.vim', event = 'VimEnter', config = [[require('theme_configs')]], as = 'onedark', disable = true}
-  use {'navarasu/onedark.nvim', event = 'VimEnter', config = [[require('theme_configs')]]} -- has different styles
-  use {'ful1e5/onedark.nvim', event = 'VimEnter', config = [[require('theme_configs')]], disable = true} -- another onedark
-  use {'tiagovla/tokyodark.nvim', event = 'VimEnter', config = [[require('theme_configs')]]} -- fancy dark theme
-  use {'bluz71/vim-moonfly-colors', event = 'VimEnter', config = [[require('theme_configs')]]} -- dark theme
+
+  -- to make a colorscheme default, comment config option of previous default one
+  -- and add config option to the new one with require('<colorscheme>').setup()
+  -- in it.
+  use {'Mofiqul/dracula.nvim', as = 'dracula'}
+  use {'tiagovla/tokyodark.nvim'}
+  use {'bluz71/vim-moonfly-colors'}
+  use {'EdenEast/nightfox.nvim'} -- require('nightfox').load(<fox_name>)
+  use {'rmehri01/onenord.nvim'}
+  use {'shaunsingh/nord.nvim'}
+  use{
+    'rose-pine/neovim',
+    as = 'rose-pine',
+    --[[ config = function()
+      vim.g.rose_pine_variant = 'base'
+      vim.cmd('colorscheme rose-pine')
+    end ]]
+  }
+  use {
+    'marko-cerovac/material.nvim',
+    --[[ config = function ()
+      vim.g.material_style = 'deep ocean'
+      require('material').setup()
+    end ]]
+  }
+  use {'navarasu/onedark.nvim',
+    config = function()
+      vim.g.onedark_style = 'deep'
+      vim.g.onedark_toggle_style_keymap = '<nop>'
+      require('onedark').setup()
+    end
+  }
 
   if vim.g.wlsp == "coc" then
     use {'neoclide/coc.nvim', branch = 'release'}
@@ -49,8 +73,8 @@ return require('packer').startup(function(use)
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
   use {'akinsho/bufferline.nvim', event = 'VimEnter', config = [[require('bufferline_configs')]], requires = 'kyazdani42/nvim-web-devicons'}
-  use 'rcarriga/nvim-notify'  -- nice notification plugin
-  use 'lukas-reineke/indent-blankline.nvim'  -- adding indentation guide lines, space dots and CRs
+  use {'rcarriga/nvim-notify'} -- nice notification plugin
+  use {'lukas-reineke/indent-blankline.nvim'} -- adding indentation guide lines, space dots and CRs
 
   use {'ryanoasis/vim-devicons', disable = true} -- using nvim-web-devicons instead which is in lua
   use {'preservim/nerdtree', disable = true} -- using neovim-tree instead which is in lua
@@ -76,12 +100,12 @@ return require('packer').startup(function(use)
     requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'}
   }
   use {'benmills/vimux', keys = {{'n', '<Leader>tmr'}, {'n', '<Leader>tml'}, {'n', '<Leader>tmc'}}} -- Vim + Tmux = Love
+
   use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end, disable = true}
-  use {'junegunn/fzf.vim', disable = true} --[[a wrapper for more fzf functionality like what coc
-		plugins like coc-tasks does. coc-fzf-preview is the
-		alternative but at the momment is not mature.
-		fzf.vim works like a charm and linux kernel is a
-		breez for it.]]
+  --[[a wrapper for more fzf functionality like what coc plugins like coc-tasks
+  does. coc-fzf-preview is the alternative but at the momment is not mature. fzf
+  vim works like a charm and linux kernel is a breez for it.]]
+  use {'junegunn/fzf.vim', disable = true}
 
   use {'preservim/tagbar', cmd = {'TagbarToggle'}, config = [[vim.cmd('source ~/.config/nvim/vim_scripts/tagbar_configs.vim')]]}
   use {'joe-skb7/cscope-maps'}
@@ -159,7 +183,7 @@ of this plugin after the plugins setup. ]]
       {'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter-textobjects'},
       -- used for developing tools with treesitter
       {'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle'},
-      {'SmiteshP/nvim-gps'},
+      {'SmiteshP/nvim-gps', after = 'nvim-treesitter'},
       -- colorizing the nested braces
       {'p00f/nvim-ts-rainbow', after = 'nvim-treesitter'}
     },
@@ -268,7 +292,7 @@ of this plugin after the plugins setup. ]]
   -- Profiling
   use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 100]]}
 
-  config = {
+  --[[ config = {
     -- Move to lua dir so impatient.nvim can cache it
     -- Create a symbolic-link of plugin/packer_compiled.lua file in lua
     -- directory by running bellow command in the lua directory, so the lua
@@ -278,7 +302,7 @@ of this plugin after the plugins setup. ]]
     -- this symbolic-link is my solution!):
     -- in lua directory run: "ln -s ../plugin/packer_compiled.lua"
     compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
-  }
+  } ]]
 
 end)
 

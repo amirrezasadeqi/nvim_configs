@@ -29,7 +29,7 @@ command! -bang -bar -nargs=? -complete=dir Cd
 
 " Define a variable to choose between coc and builtin neovim lsp.
 " valid values are "coc" and "nvim_lsp".
-let g:wlsp = "coc"
+let g:wlsp = "nvim_lsp"
 
 " Define a variable to choose between general and neovim-specfic sumneko lsp
 " configs. valid values are "general" and "neovim".
@@ -44,7 +44,8 @@ if g:wlsp == "coc" " if using coc source this file
 endif
 " source ~/.config/nvim/vim_scripts/tagbar_configs.vim
 
-lua require('packer_compiled') -- For impatient configuration. I think this must be at the end
+" to cache the packer_compiled(I don't know for what we need to cache this):
+" lua require('packer_compiled')
 
 "====================================================================
 " Here is the configs from the plugins that I used before porting of con-

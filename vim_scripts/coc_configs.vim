@@ -3,22 +3,6 @@
 "			!! i just copied from coc
 "				official site.
 "===================================================================
-" File type detection for roslaunch files
-" I love this thing(line):
-au BufRead,BufNewFile *.launch set filetype=xml
-au BufRead,BufNewFile *.urdf set filetype=xml
-au BufRead,BufNewFile *.xacro set filetype=xml
-
-" adding some settings for python dev
-au BufRead,BufNewFile python
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
-    \ set foldmethod=indent
-    \ set foldlevel=99
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -34,7 +18,7 @@ au BufRead,BufNewFile python
 " numbers. I've had not any issues till now with that and if in future there
 " would be a problem I will use the above section which is from the coc nvim
 " repo and is official and has no issue or problem.
-set signcolumn=auto:9
+" set signcolumn=auto:9
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by

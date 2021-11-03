@@ -6,11 +6,14 @@ vim.o.termguicolors = true
 vim.o.mouse = 'a' -- Enable mouse support
 vim.o.clipboard = 'unnamedplus'
 vim.o.colorcolumn = '81'
-vim.o.textwidth	= 80
+vim.o.textwidth = 80
 
 -- To highlight current line and column
 vim.o.cursorline = true
 vim.o.cursorcolumn = true
+
+-- signcolumn dynamically changes its size to fit all the available signs.
+vim.o.signcolumn = 'auto:9'
 
 -- TextEdit might fail if hidden is not set.
 vim.o.hidden = true

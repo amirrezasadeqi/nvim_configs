@@ -2,7 +2,7 @@
 --		              LSP Configs
 --###########################################################]]
 
-local nvim_lsp = require 'lspconfig'
+-- local nvim_lsp = require 'lspconfig' -- for now is unused.
 local lsp_installer = require("nvim-lsp-installer")
 
 -- nvim-cmp supports additional completion capabilities
@@ -31,7 +31,7 @@ end
 -- folke/lua-dev setups for sumneko LSP
 local luadev = require("lua-dev").setup({
   lspconfig = {
-    on_attach = on_attach_lsp_keymaps,
+    on_attach = On_attach_lsp_keymaps,
     capabilities = capabilities,
     },
 })
@@ -41,7 +41,7 @@ lsp_installer.on_server_ready(function(server)
 	-- Default options
 	-- Note: These are automatically setup from nvim-lspconfig. See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 	local default_opts = {
-		on_attach = on_attach_lsp_keymaps,
+		on_attach = On_attach_lsp_keymaps,
 		capabilities = capabilities,
 	}
 

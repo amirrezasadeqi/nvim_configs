@@ -91,6 +91,19 @@ return require('packer').startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons'
   }
 
+  use {
+    "folke/trouble.nvim",
+    requires = {'kyazdani42/nvim-web-devicons'},
+    config = function()
+      require("trouble").setup ({
+        auto_close = true
+      })
+      Trouble_keys()
+    end,
+    cmd = {'Trouble'},
+    keys = {'<leader>tr'}
+  }
+
   use {'mbbill/undotree', cmd = {'UndotreeToggle'}, config = [[require('undotree_configs')]]} -- The undo history visualizer
   use {'tversteeg/registers.nvim', keys = {{'n', '"'}, {'i', '<c-R>'}}} -- preview and apply registers
 
@@ -106,6 +119,15 @@ return require('packer').startup(function(use)
     config = [[require('neogit_configs')]],
     requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'}
   }
+
+  use {
+    'sbdchd/neoformat',
+    cmd = {'Neoformat'},
+    config = function ()
+      vim.g.shfmt_opt = '-ci'
+    end
+  }
+
   use {'benmills/vimux', keys = {{'n', '<Leader>tmr'}, {'n', '<Leader>tml'}, {'n', '<Leader>tmc'}}} -- Vim + Tmux = Love
 
   use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end, disable = true}
@@ -115,7 +137,35 @@ return require('packer').startup(function(use)
   use {'junegunn/fzf.vim', disable = true}
 
   use {'preservim/tagbar', cmd = {'TagbarToggle'}, config = [[vim.cmd('source ~/.config/nvim/vim_scripts/tagbar_configs.vim')]]}
-  use {'joe-skb7/cscope-maps'}
+  -- Maps don't work. don't know where is problem. I added a bunch useful maps
+  -- manually and for now disabled this plugin.
+  use {'joe-skb7/cscope-maps', disable = true}
+  -- A cscope wrapper that automatically generates cscope DB on writes and saves
+  -- me to do things manually(if you use its functions it manages the cscope
+  -- DB.). this is the nicest thing that I could find to manage cscope properly
+  -- till now.
+  use {
+    'brookhong/cscope.vim',
+    setup = function ()
+      Cscove_keys()
+    end,
+    opt = true
+  }
+  use {
+    'ludovicchabant/vim-gutentags',
+    requires = {
+      {
+        'skywind3000/gutentags_plus',
+        config = function ()
+          vim.g.gutentags_plus_nomap = true
+          GutentagsPlus_keys()
+        end,
+        after = 'vim-gutentags'
+      }
+    },
+    config = [[require('gutentags_configs')]]
+  }
+
   use {'skywind3000/asynctasks.vim'}
   use {'skywind3000/asyncrun.vim'}
   use {'tpope/vim-surround'}
@@ -129,11 +179,79 @@ return require('packer').startup(function(use)
   use {'wellle/targets.vim'} -- Vim plugin that provides additional text objects
   use {'andymass/vim-matchup', setup = [[require('matchup_configs')]], event = 'VimEnter', disable = true} -- a little extends vim's %
   use {'b3nj5m1n/kommentary', keys = {{'n', 'gcc'}, {'n', 'gc'}, {'v', 'gc'}}} --nice plugin for commenting
+  use {
+    's1n7ax/nvim-comment-frame',
+    keys = {'<leader>cf', '<leader>cm'},
+    config = function()
+      require('nvim-comment-frame').setup({
+        disable_default_keymap = true,
+      })
+      Comment_frame_keys()
+    end
+  }
+  use {
+    'kkoomen/vim-doge',
+    keys = {'n', '<leader>dg'},
+    run = function ()
+      vim.fn['doge#install']()
+    end,
+    config = function ()
+      Doge_keys()
+    end,
+    disable = true
+  }
+  -- use {'mg979/vim-visual-multi', branch = 'master', opt = true}
+  use {'godlygeek/tabular', cmd = {'Tabularize'}, disable = true} -- Align text using regex expressions
+  use { -- another text aligning plugin
+    'junegunn/vim-easy-align',
+    keys = {
+      {'n', '<leader>ga'},
+      {'x', '<leader>ga'}
+    },
+    config = function ()
+      Easy_align_keys()
+      vim.g.easy_align_delimiters = { -- copied from lewis6991 configs
+        [';']  = { pattern = ';'        , left_margin = 0 },
+        ['[']  = { pattern = '['        , left_margin = 1, right_margin = 0 },
+        [']']  = { pattern = ']'        , left_margin = 0, right_margin = 1 },
+        [',']  = { pattern = ','        , left_margin = 0, right_margin = 1 },
+        [')']  = { pattern = ')'        , left_margin = 0, right_margin = 0 },
+        ['(']  = { pattern = '('        , left_margin = 0, right_margin = 0 },
+        ['=']  = { pattern = [[<\?=>\?]], left_margin = 1, right_margin = 1 },
+        ['|']  = { pattern = [[|\?|]]   , left_margin = 1, right_margin = 1 },
+        ['&']  = { pattern = [[&\?&]]   , left_margin = 1, right_margin = 1 },
+        [':']  = { pattern = ':'        , left_margin = 1, right_margin = 1 },
+        ['?']  = { pattern = '?'        , left_margin = 1, right_margin = 1 },
+        ['<']  = { pattern = '<'        , left_margin = 1, right_margin = 0 },
+        ['>']  = { pattern = '>'        , left_margin = 1, right_margin = 0 },
+        ['\\'] = { pattern = '\\'       , left_margin = 1, right_margin = 0 },
+        ['+']  = { pattern = '+'        , left_margin = 1, right_margin = 1 }
+      }
+    end
+  }
+
+  use {
+    'chipsenkbeil/distant.nvim',
+    config = function()
+      require('distant').setup {
+        ['*'] = require('distant.settings').chip_default()
+      }
+    end,
+    cmd = {'DistantLaunch', 'DistantOpen', 'DistantInstall'}
+  }
 
   use {'szw/vim-maximizer'} --[[maximize a window with <F3>
     it has some <C-o> which has
     some strange behavior but the
     <F3> only works well. ]]
+
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = function()
+      vim.fn["mkdp#util#install_sync"]()
+    end,
+    ft = {'markdown'}
+  }
 
 -- Plugin for ROS snippets
 -- the first plugin is more complete.
@@ -191,6 +309,20 @@ of this plugin after the plugins setup. ]]
       -- used for developing tools with treesitter
       {'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle'},
       {'SmiteshP/nvim-gps', after = 'nvim-treesitter'},
+      {
+        'code-biscuits/nvim-biscuits',
+        config = function ()
+          require('nvim-biscuits').setup({
+            default_config = {
+              max_length = 24,
+              min_distance = 5,
+              prefix_string = " 📎 "
+            },
+            toggle_keybind = Biscuits_toggle_keybind
+          })
+        end,
+        after = 'nvim-treesitter'
+      },
       -- colorizing the nested braces
       {'p00f/nvim-ts-rainbow', after = 'nvim-treesitter'}
     },
@@ -253,6 +385,7 @@ of this plugin after the plugins setup. ]]
     use {'windwp/nvim-autopairs', after = 'nvim-cmp', config = [[require('autopairs_configs')]]} -- autopairing braces
     use {'onsails/lspkind-nvim'} -- nice icons in nvim-cmp
     use {'hrsh7th/cmp-calc', after = 'nvim-cmp'} -- replace answer of math calc
+    use {'quangnguyen30192/cmp-nvim-tags', after = 'nvim-cmp'} -- tags sources for nvim-cmp
     use {'kdheepak/cmp-latex-symbols', after = 'nvim-cmp', disable = true} -- insertion of latex symbols
     use {'ray-x/cmp-treesitter', after = 'nvim-cmp', disable = true} -- cmp source for treesitter
     use {'f3fora/cmp-spell', after = 'nvim-cmp', disable = true} -- spell source for nvim-cmp
@@ -290,6 +423,7 @@ of this plugin after the plugins setup. ]]
       cmd = {'Lspsaga'},
       disable = true
     }
+    use {'kosayoda/nvim-lightbulb', disable = true}
   end
 
 -- cover page for neovim

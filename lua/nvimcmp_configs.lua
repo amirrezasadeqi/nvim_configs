@@ -32,6 +32,7 @@ cmp.setup({
       latex_symbols = '[LaTex]',
       treesitter = '[TreeSitter]',
       spell = '[Spell]',
+      tags = '[TAG]',
     })})
   },
   snippet = {
@@ -78,6 +79,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'cmp_tabnine' },
     { name = 'calc' },
+    { name = 'tags' },
     -- { name = 'latex_symbols' },
     -- { name = 'treesitter' },
     -- { name = 'spell', keyword_length = 5 },

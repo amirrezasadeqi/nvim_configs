@@ -42,8 +42,8 @@ vim.api.nvim_set_keymap('n', '<C-p>', ":lua require'telescope'.extensions.projec
 --		              Dashboard keymaps
 --###########################################################]]
 
---[[Note that becuase i setup dashboard to use telescope dashboard commands are 
-actually the telescope commands and actually they are a wrapper around them 
+--[[Note that becuase i setup dashboard to use telescope dashboard commands are
+actually the telescope commands and actually they are a wrapper around them
 i think!]]
 vim.api.nvim_set_keymap('n', '<leader>ss', ':SessionSave<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>sl', ':SessionLoad<CR>', {})
@@ -147,7 +147,7 @@ end
 ==================================================================== ]]
 
 if vim.g.wlsp == "nvim_lsp" then
-  on_attach_lsp_keymaps = function(_, bufnr)
+  On_attach_lsp_keymaps = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     local opts = { noremap = true, silent = true }
@@ -290,6 +290,126 @@ if vim.g.wlsp == 'nvim_lsp' then
   vim.api.nvim_set_keymap("n", "<leader>gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", {noremap=true})
   vim.api.nvim_set_keymap("n", "<leader>gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", {noremap=true})
 end
+
+--[[###########################################################
+--		              vim-easy-align keymaps
+--###########################################################]]
+
+function Easy_align_keys()
+  vim.api.nvim_set_keymap("n", "<leader>ga", '<Plug>(EasyAlign)', {})
+  vim.api.nvim_set_keymap("x", "<leader>ga", '<Plug>(EasyAlign)', {})
+end
+
+--[[###########################################################
+--		              nvim-biscuits keymaps
+--###########################################################]]
+
+Biscuits_toggle_keybind = '<leader>cb'
+
+--[[###########################################################
+--		              comment-frame keymaps
+--###########################################################]]
+
+function Comment_frame_keys()
+  vim.api.nvim_set_keymap('n', '<leader>cf', ":lua require('nvim-comment-frame').add_comment()<CR>", {})
+  vim.api.nvim_set_keymap('n', '<leader>cm', ":lua require('nvim-comment-frame').add_multiline_comment()<CR>", {})
+end
+
+--[[###########################################################
+--		              vim-doge keymaps
+--###########################################################]]
+
+function Doge_keys()
+  vim.g.doge_mapping = '<leader>dg'
+
+  -- vim.g.doge_mapping_comment_jump_forward = '<leader><C-n>'
+  -- vim.g.doge_mapping_comment_jump_backward = '<leader><C-p>'
+
+  -- 'i' was deleted to prevent confliction of <TAB> keymap with nvim-cmp <TAB>
+  -- mapping. Till now I could not find a way to check that TODO comment is
+  -- available or not to prevent this confliction. in future ...
+  vim.g.doge_comment_jump_modes = {'n', 's'}
+end
+
+--[[###########################################################
+--		              trouble.nvim keymaps
+--###########################################################]]
+
+function Trouble_keys()
+  vim.api.nvim_set_keymap("n", "<leader>tr", "<cmd>Trouble<cr>", {silent = true, noremap = true})
+end
+
+--[[###########################################################
+--		              gutentas_plus keymaps
+--###########################################################]]
+
+function GutentagsPlus_keys()
+  vim.api.nvim_set_keymap ('n', '<leader><leader>cs' ,':GscopeFind s <C-R><C-W><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>cg' ,':GscopeFind g <C-R><C-W><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>cc' ,':GscopeFind c <C-R><C-W><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>ct' ,':GscopeFind t <C-R><C-W><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>ce' ,':GscopeFind e <C-R><C-W><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>cf' ,':GscopeFind f <C-R>=expand("<cfile>")<cr><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>ci' ,':GscopeFind i <C-R>=expand("<cfile>")<cr><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>cd' ,':GscopeFind d <C-R><C-W><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>ca' ,':GscopeFind a <C-R><C-W><cr>', {silent = true, noremap = true})
+  vim.api.nvim_set_keymap ('n', '<leader><leader>cz' ,':GscopeFind z <C-R><C-W><cr>', {silent = true, noremap = true})
+end
+
+--[[###########################################################
+--		              cscope.vim keymaps
+--###########################################################]]
+
+function Cscove_keys()
+  vim.api.nvim_set_keymap('n', '<leader><leader>sfi', ":call CscopeFindInteractive(expand('<cword>'))<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sfl', ":call ToggleLocationList()<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sfs', ":call CscopeFind('s', expand('<cword>'))<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sfg', ":call CscopeFind('g', expand('<cword>'))<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sfd', ":call CscopeFind('d', expand('<cword>'))<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sfc', ":call CscopeFind('c', expand('<cword>'))<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sft', ":call CscopeFind('t', expand('<cword>'))<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sfe', ":call CscopeFind('e', expand('<cword>'))<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sff', ":call CscopeFind('f', expand('<cword>'))<CR>", {noremap = true})
+  vim.api.nvim_set_keymap('n', '<leader><leader>sfI', ":call CscopeFind('i', expand('<cword>'))<CR>", {noremap = true})
+end
+
+--[[###########################################################
+--		              builtin cscope keymaps
+--###########################################################]]
+
+-- cscope.vim and gutentags work well use these in necessary momments otherwise
+-- use them, specially the gutentags would be my daily driver. enjoy it.
+vim.api.nvim_set_keymap('n', '<leader>sfs', [[:call setqflist([], 'r') | copen | cs find s <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sfg', [[:call setqflist([], 'r') | copen | cs find g <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sfc', [[:call setqflist([], 'r') | copen | cs find c <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sft', [[:call setqflist([], 'r') | copen | cs find t <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sfe', [[:call setqflist([], 'r') | copen | cs find e <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sff', [[:call setqflist([], 'r') | copen | cs find f <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sfi', [[:call setqflist([], 'r') | copen | cs find i ^<C-R>=expand("<cfile>")<CR>$<CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>sfd', [[:call setqflist([], 'r') | copen | cs find d <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+
+vim.api.nvim_set_keymap('n', '<leader>ssfs', [[:call setqflist([], 'r') | copen | scs find s <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>ssfg', [[:call setqflist([], 'r') | copen | scs find g <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>ssfc', [[:call setqflist([], 'r') | copen | scs find c <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>ssft', [[:call setqflist([], 'r') | copen | scs find t <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>ssfe', [[:call setqflist([], 'r') | copen | scs find e <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>ssff', [[:call setqflist([], 'r') | copen | scs find f <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>ssfi', [[:call setqflist([], 'r') | copen | scs find i ^<C-R>=expand("<cfile>")<CR>$<CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>ssfd', [[:call setqflist([], 'r') | copen | scs find d <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+
+vim.api.nvim_set_keymap('n', '<leader>svfs', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find s <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>svfg', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find g <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>svfc', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find c <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>svft', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find t <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>svfe', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find e <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>svff', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find f <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>svfi', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR><C-W><C-W>]], {})
+vim.api.nvim_set_keymap('n', '<leader>svfd', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find d <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
+
+
+
+
+
 
 
 

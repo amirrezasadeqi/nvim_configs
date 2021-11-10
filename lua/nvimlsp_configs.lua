@@ -2,7 +2,7 @@
 --		              LSP Configs
 --###########################################################]]
 
--- local nvim_lsp = require 'lspconfig' -- for now is unused.
+local nvim_lsp = require 'lspconfig'
 local lsp_installer = require("nvim-lsp-installer")
 
 -- nvim-cmp supports additional completion capabilities
@@ -53,6 +53,21 @@ lsp_installer.on_server_ready(function(server)
       else
         return default_opts
       end
+    end,
+    ["clangd"] = function ()
+      default_opts.cmd = {
+        "clangd",
+        "--background-index",
+        -- By default, clang-tidy uses -checks=clang-diagnostic-*,clang-analyzer-*
+        -- to add more checks, create .clang-tidy file in the root directory
+        -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
+        -- TODO: In future I will add a default .clang-tidy file to the tasks of
+        -- creating c/cpp and ros projects.
+        "--clang-tidy",
+        "--cross-file-rename"
+      }
+      default_opts.root_dir = nvim_lsp.util.root_pattern(".git", "compile_commands.json", "compile_flags.txt", ".catkin_workspace")
+      return default_opts
     end,
 	}
 

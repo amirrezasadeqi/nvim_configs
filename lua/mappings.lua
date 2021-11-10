@@ -406,32 +406,14 @@ vim.api.nvim_set_keymap('n', '<leader>svff', [[:copen | wincmd p | call setqflis
 vim.api.nvim_set_keymap('n', '<leader>svfi', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR><C-W><C-W>]], {})
 vim.api.nvim_set_keymap('n', '<leader>svfd', [[:copen | wincmd p | call setqflist([], 'r') | vert scs find d <C-R>=expand("<cword>")<CR><CR><C-W><C-W>]], {})
 
+----------------------------------------------------------------------
+--                         harpoon keymaps                          --
+----------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function Harpoon_keys()
+  vim.api.nvim_set_keymap('n', '<leader>hat', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", {})
+  vim.api.nvim_set_keymap('n', '<leader>haa', ":lua require('harpoon.mark').add_file()<CR>", {})
+end
 
 
 

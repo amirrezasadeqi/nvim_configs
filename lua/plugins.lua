@@ -75,9 +75,9 @@ return require('packer').startup(function(use)
 
   use {
     'hoob3rt/lualine.nvim',
-    event = 'VimEnter',
     config = [[require('lualine_configs')]],
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    after = 'nvim-gps'
   }
   use {'akinsho/bufferline.nvim', event = 'VimEnter', config = [[require('bufferline_configs')]], requires = 'kyazdani42/nvim-web-devicons'}
   use {'rcarriga/nvim-notify'} -- nice notification plugin
@@ -92,6 +92,11 @@ return require('packer').startup(function(use)
   }
 
   use {
+    'kevinhwang91/nvim-bqf',
+    ft = 'qf'
+  }
+
+  use {
     "folke/trouble.nvim",
     requires = {'kyazdani42/nvim-web-devicons'},
     config = function()
@@ -102,6 +107,14 @@ return require('packer').startup(function(use)
     end,
     cmd = {'Trouble'},
     keys = {'<leader>tr'}
+  }
+
+  use {
+    'ThePrimeagen/harpoon',
+    keys = {{'n', '<leader>hat'}, {'n', '<leader>haa'}},
+    config = function ()
+      Harpoon_keys()
+    end
   }
 
   use {'mbbill/undotree', cmd = {'UndotreeToggle'}, config = [[require('undotree_configs')]]} -- The undo history visualizer
@@ -130,13 +143,14 @@ return require('packer').startup(function(use)
 
   use {'benmills/vimux', keys = {{'n', '<Leader>tmr'}, {'n', '<Leader>tml'}, {'n', '<Leader>tmc'}}} -- Vim + Tmux = Love
 
-  use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end, disable = true}
+  use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end, after = 'nvim-bqf'}
   --[[a wrapper for more fzf functionality like what coc plugins like coc-tasks
   does. coc-fzf-preview is the alternative but at the momment is not mature. fzf
   vim works like a charm and linux kernel is a breez for it.]]
   use {'junegunn/fzf.vim', disable = true}
 
   use {'preservim/tagbar', cmd = {'TagbarToggle'}, config = [[vim.cmd('source ~/.config/nvim/vim_scripts/tagbar_configs.vim')]]}
+  use {'liuchengxu/vista.vim', cmd = {'Vista'}} -- an alternative for tagbar
   -- Maps don't work. don't know where is problem. I added a bunch useful maps
   -- manually and for now disabled this plugin.
   use {'joe-skb7/cscope-maps', disable = true}
@@ -240,6 +254,11 @@ return require('packer').startup(function(use)
     cmd = {'DistantLaunch', 'DistantOpen', 'DistantInstall'}
   }
 
+  use {
+    'jamestthompson3/nvim-remote-containers',
+    cmd = {'AttachToContainer', 'BuildImage', 'StartImage'}
+  }
+
   use {'szw/vim-maximizer'} --[[maximize a window with <F3>
     it has some <C-o> which has
     some strange behavior but the
@@ -308,7 +327,13 @@ of this plugin after the plugins setup. ]]
       {'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter-textobjects'},
       -- used for developing tools with treesitter
       {'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle'},
-      {'SmiteshP/nvim-gps', after = 'nvim-treesitter'},
+      {
+        'SmiteshP/nvim-gps',
+        config = function ()
+          require("nvim-gps").setup()
+        end,
+        after = 'nvim-treesitter'
+      },
       {
         'code-biscuits/nvim-biscuits',
         config = function ()
@@ -328,6 +353,11 @@ of this plugin after the plugins setup. ]]
     },
     config = [[require('treesitter_configs')]],
     run = ':TSUpdate' -- We recommend updating the parsers on update
+  }
+
+  use {
+    'mizlan/iswap.nvim',
+    cmd = {'ISwap', 'ISwapWith'}
   }
 
 -- Telescope and its extensions
@@ -424,6 +454,16 @@ of this plugin after the plugins setup. ]]
       disable = true
     }
     use {'kosayoda/nvim-lightbulb', disable = true}
+    use {
+      'simrat39/symbols-outline.nvim',
+      setup = function ()
+        vim.g.symbols_outline = {
+          auto_preview = false
+        }
+      end,
+      cmd = {'SymbolsOutline'},
+      disable = true
+    }
   end
 
 -- cover page for neovim

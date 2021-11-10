@@ -1,10 +1,7 @@
---[[----------------------------------------------------------------------------
--- Lualine related settings. also contains gps setting which works as a segment
--- of Lualine.
-------------------------------------------------------------------------------]]
+------------------------------------------------------------------------------
+--                              Lualine Configs
+------------------------------------------------------------------------------
 
---Note: setup function needs to be called once for nvim-gps to work.
-require('nvim-gps').setup()
 local gps = require("nvim-gps")
 
 

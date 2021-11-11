@@ -464,6 +464,22 @@ of this plugin after the plugins setup. ]]
       cmd = {'SymbolsOutline'},
       disable = true
     }
+    use {
+      'mfussenegger/nvim-lint',
+      config = function ()
+        require('lint').linter_by_ft = {
+          c = {'clangtidy'},
+          cpp = {'clangtidy'},
+          objc = {'clangtidy'},
+          objcpp = {'clangtidy'},
+          python = {'pylint'},
+          sh = {'shellcheck'}
+        }
+        vim.cmd("au BufWritePost <buffer> lua require('lint').try_lint()")
+      end,
+      opt = true,
+      disable = true
+    }
   end
 
 -- cover page for neovim

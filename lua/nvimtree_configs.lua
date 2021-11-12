@@ -1,13 +1,15 @@
 require('nvim-tree').setup {
   open_on_setup = true,
   ignore_ft_on_setup = {'startify', 'dashboard'},
-  --[[ When open nvim with no directory and open a project with telescope project plugin
-  you need to toggle nvim tree twice to referesh the project tree but if you set 
-  bellow options it will be ok. but i will leave them commented because the default
-  is zero for bellow options and maybe cause some wierd behaviors in some situations
-  (I didn't see any bad behavior yet!) and it is not annoying now. in future ... ]]
-  -- update_cwd = true, -- I moved this option into setup function. the other option
-                        -- is outside of setup function and is "nvim_tree_respect_buf_cwd".
+  -- Bellow option is necessary for nvim tree to update when we use the custom
+  -- defined command 'Cd'. if we don't set this option when we open neovim
+  -- with 'nvim' command without specification of directory and then use the
+  -- 'Cd' command or its keybinding the nvim tree will not update and just shows
+  -- the HOME directory contents. In the past (Actually I have not checked it
+  -- recently!) it was mentioned in the plugin repository that setting this option
+  -- may lead to some weird or bad behaviors but till now I have not seen any weird
+  -- situation. In future ...
+  update_cwd = true,
 }
 
 -- vim.g.nvim_tree_respect_buf_cwd = 1

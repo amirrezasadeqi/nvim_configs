@@ -35,6 +35,11 @@ let g:wlsp = "nvim_lsp"
 " configs. valid values are "general" and "neovim".
 let g:wlua = "neovim"
 
+" Define a flag to specify the diagnostic source in lualine. Valid values are
+" 'coc', 'nvim_diagnostic', 'nvim_lsp'. Note that nvim_lsp is deprecated in
+" favour of nvim_diagnostic, so I just mentioned it for comprehension.
+let g:wdig = "nvim_diagnostic"
+
 " source configurations from lua files
 lua require('init')
 

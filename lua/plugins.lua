@@ -141,7 +141,13 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {'benmills/vimux', keys = {{'n', '<Leader>tmr'}, {'n', '<Leader>tml'}, {'n', '<Leader>tmc'}}} -- Vim + Tmux = Love
+  use {
+    'benmills/vimux', -- Vim + Tmux = Love
+    keys = {{'n', '<Leader>tmr'}, {'n', '<Leader>tml'}, {'n', '<Leader>tmc'}},
+    config = function()
+      Vimux_keys()
+    end
+  }
 
   use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end, after = 'nvim-bqf'}
   --[[a wrapper for more fzf functionality like what coc plugins like coc-tasks

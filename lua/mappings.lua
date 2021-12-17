@@ -192,9 +192,11 @@ vim.api.nvim_set_keymap('n', '<leader>kt', ':!killall -9 roscore && killall -9 r
     		              Vimux keybindings
 ==================================================================== ]]
 -- Some Bindings to Control Terminal
-vim.api.nvim_set_keymap('n', '<Leader>tmr', ':VimuxPromptCommand<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<Leader>tml', ':VimuxRunLastCommand<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<Leader>tmc', ':VimuxCloseRunner<CR>', {noremap = true})
+function Vimux_keys()
+  vim.api.nvim_set_keymap('n', '<Leader>tmr', ':VimuxPromptCommand<CR>', {noremap = true})
+  vim.api.nvim_set_keymap('n', '<Leader>tml', ':VimuxRunLastCommand<CR>', {noremap = true})
+  vim.api.nvim_set_keymap('n', '<Leader>tmc', ':VimuxCloseRunner<CR>', {noremap = true})
+end
 
 --[[ ####################################################################
   			              Tagbar keymaps

@@ -43,9 +43,11 @@ return require('packer').startup(function(use)
   }
   use {'navarasu/onedark.nvim',
     config = function()
-      vim.g.onedark_style = 'warmer'
-      vim.g.onedark_toggle_style_keymap = '<nop>'
-      require('onedark').setup()
+      require('onedark').setup{
+        style = 'warmer',
+        toggle_style_key = '<nop>'
+      }
+      require('onedark').load()
     end
   }
 

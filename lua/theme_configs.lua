@@ -2,9 +2,9 @@
 --			Colorscheme navarasu/onedark Setup
 --###################################################################
 
-vim.g.onedark_style = 'warm'
-vim.g.onedark_toggle_style_keymap = '<nop>'
-vim.cmd[[colorscheme onedark]]
+-- vim.g.onedark_style = 'warm'
+-- vim.g.onedark_toggle_style_keymap = '<nop>'
+-- vim.cmd[[colorscheme onedark]]
 
 --###################################################################
 --			Colorscheme fulle5/onedark Setup

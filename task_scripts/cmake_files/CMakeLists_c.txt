@@ -1,9 +1,0 @@
-# ~/.config/nvim/task_scripts/cmake_files/CMakeLists_c.txt
-
-cmake_minimum_required(VERSION CMAKE_VERSION)
-
-project(PROJECT_NAME)
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS true)
-
-add_executable(PROJECT_NAME src/main.c)

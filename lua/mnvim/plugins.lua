@@ -55,7 +55,15 @@ return packer.startup(function(use)
       require('onedark').load()
     end
   }
-
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = require("mnvim.nvimtree").config(),
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+  use {
+    "folke/which-key.nvim",
+    config = require("mnvim.whichkey").config()
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

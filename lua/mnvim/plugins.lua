@@ -64,6 +64,34 @@ return packer.startup(function(use)
     "folke/which-key.nvim",
     config = require("mnvim.whichkey").config()
   }
+  use {
+    "rcarriga/nvim-notify",
+    config = require("mnvim.notify").config()
+  }
+  use {
+    "akinsho/bufferline.nvim",
+    tag = "v2.*",
+    -- A little wierd that this only works with function keyword
+    -- but other plugins are ok with just requiring the desired function!
+    config = function()
+      require("mnvim.bufferline").config()
+    end,
+    event = "BufWinEnter"
+  }
+  use {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require("mnvim.lualine").config()
+    end
+  }
+  use {
+    'nvim-telescope/telescope.nvim',
+    -- cmd = "Telescope",
+    config = function()
+      require("telescope").setup()
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

@@ -22,6 +22,13 @@ local vopts = {
 }
 
 local mappings = {
+  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  f = {
+    name = "Fuzzy Finder [Telescope]",
+    f = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+    h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+  },
   i = {
     i = { "<cmd>nohlsearch<cr>", "No Highlight" },
   },

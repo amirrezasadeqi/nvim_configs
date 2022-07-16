@@ -57,16 +57,22 @@ return packer.startup(function(use)
   }
   use {
     'kyazdani42/nvim-tree.lua',
-    config = require("mnvim.nvimtree").config(),
+    config = function()
+      require("mnvim.nvimtree").config()
+    end,
     requires = 'kyazdani42/nvim-web-devicons'
   }
   use {
     "folke/which-key.nvim",
-    config = require("mnvim.whichkey").config()
+    config = function()
+      require("mnvim.whichkey").config()
+    end
   }
   use {
     "rcarriga/nvim-notify",
-    config = require("mnvim.notify").config()
+    config = function()
+      require("mnvim.notify").config()
+    end
   }
   use {
     "akinsho/bufferline.nvim",
@@ -86,12 +92,25 @@ return packer.startup(function(use)
   }
   use {
     'nvim-telescope/telescope.nvim',
-    -- cmd = "Telescope",
+    cmd = "Telescope",
     config = function()
-      require("telescope").setup()
-    end
+      require("mnvim.telescope").config()
+    end,
+    requires = {
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    }
+  }
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    -- events = { "BufRead", "BufWinEnter", "BufNewFile" },
+    config = function()
+      -- require("nvim-treesitter.configs").setup({})
+      require("mnvim.treesitter").config()
+    end,
+    run = ":TSUpdate" -- We recommend updating the parsers on update
   }
 
+  use { 'ThePrimeagen/refactoring.nvim', disable = true } --This is not complete yet and i will use it in future.
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

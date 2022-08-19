@@ -7,8 +7,8 @@ end
 local lualine_configs = {
   options = {
     theme = 'onedark'
-    -- theme = 'tokyodark'
     -- theme = 'tokyonight'
+    -- theme = 'tokyodark'
     -- theme = 'moonfly'
     -- theme = 'nightfox'
     -- theme = 'material-nvim'

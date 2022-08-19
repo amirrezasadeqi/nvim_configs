@@ -7,7 +7,7 @@ function M.set_default_opts()
     numberwidth = 4,
     mouse = 'a',
     clipboard = 'unnamedplus',
-    syntax = "enable",
+    -- syntax = "on",
     termguicolors = true,
     cursorline = true,
     cursorcolumn = true,

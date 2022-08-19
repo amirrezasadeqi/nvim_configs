@@ -40,18 +40,32 @@ local treesitter_opts = {
     "wgsl",
     -- "swift",
   },
+  -- Enable/Disable Treesitter modules and their configurations
   highlight = {
     enable = true,
     disable = {},
     additional_vim_regex_highlighting = false,
+    -- use_languagetree = true,
   },
   indent = {
     enable = true,
+  },
+  autotag = {
+    enable = false
   },
   matchup = { -- this is for vim-matchup plugin
     enable = false,
     -- list of disabled languages
     -- disable = { "c", "ruby" },
+  },
+  context_commentstring = {
+    enable = false,
+    enable_autocmd = false,
+    config = {
+      -- Languages that have a single comment style
+      html = "<!-- %s -->",
+      json = "",
+    },
   },
   textobjects = {
     select = {
@@ -120,6 +134,10 @@ local treesitter_opts = {
       },
     },
   },
+  textsubjects = {
+    enable = false,
+    keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-big" },
+  },
   refactor = {
     enable = false,
     -- highlights under-cursor and its usages
@@ -132,7 +150,7 @@ local treesitter_opts = {
       },
     },
     navigation = {
-      enable = true,
+      enable = false,
       keymaps = {
         -- Uses lsp as fallback for nvim-treesitter
         goto_definition_lsp_fallback = "gnd",
@@ -144,7 +162,7 @@ local treesitter_opts = {
     },
   },
   incremental_selection = {
-    enable = true,
+    enable = false,
     keymaps = {
       init_selection = '<Leader>gnn',
       node_incremental = '<Leader>grn',
@@ -153,7 +171,7 @@ local treesitter_opts = {
     },
   },
   playground = {
-    enable = false,
+    enable = true,
     disable = {},
     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
     persist_queries = true, -- Whether the query persists across vim sessions
@@ -176,7 +194,7 @@ local treesitter_opts = {
     lint_events = { "BufWrite", "CursorHold" },
   },
   rainbow = {
-    enable = false,
+    enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings

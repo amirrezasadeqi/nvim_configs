@@ -102,12 +102,19 @@ return packer.startup(function(use)
   }
   use {
     "nvim-treesitter/nvim-treesitter",
-    -- events = { "BufRead", "BufWinEnter", "BufNewFile" },
+    events = { "BufRead", "BufWinEnter", "BufNewFile" },
     config = function()
-      -- require("nvim-treesitter.configs").setup({})
       require("mnvim.treesitter").config()
     end,
     run = ":TSUpdate" -- We recommend updating the parsers on update
+  }
+  use {
+    'p00f/nvim-ts-rainbow',
+    after = 'nvim-treesitter'
+  }
+  use {
+    'nvim-treesitter/playground',
+    cmd = 'TSPlaygroundToggle'
   }
 
   use { 'ThePrimeagen/refactoring.nvim', disable = true } --This is not complete yet and i will use it in future.

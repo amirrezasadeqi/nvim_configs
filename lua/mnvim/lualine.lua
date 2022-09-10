@@ -1,4 +1,4 @@
--- local gps = require("nvim-gps")
+local navic = require("nvim-navic")
 local lualine_status_ok, lualine = pcall(require, "lualine")
 if not lualine_status_ok then
   return
@@ -17,17 +17,17 @@ local lualine_configs = {
     -- theme = 'rose-pine'
     -- theme = 'dracula-nvim'
   },
-  -- sections = {
-  --   lualine_c = {
-  --     { gps.get_location, condition = gps.is_available },
-  --     { 'g:coc_status' },
-  --   },
-  --   lualine_x = {
-  --     { 'diagnostics',
-  --       sources = { "nvim_diagnostic" },
-  --     },
-  --   },
-  -- },
+  sections = {
+    lualine_c = {
+      { navic.get_location, condition = navic.is_available },
+      -- { 'g:coc_status' },
+    },
+    lualine_x = {
+      { 'diagnostics',
+        sources = { "nvim_diagnostic" },
+      },
+    },
+  },
   extensions = {
     -- 'fugitive',
     'nvim-tree',

@@ -9,6 +9,7 @@ local treesitter_opts = {
     "bibtex",
     "c",
     "cpp",
+    "python",
     "cuda",
     "cmake",
     "comment",

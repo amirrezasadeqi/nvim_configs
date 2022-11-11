@@ -85,6 +85,13 @@ return packer.startup(function(use)
 		end,
 		event = "BufWinEnter",
 	})
+
+	use({
+		"famiu/bufdelete.nvim",
+		cmd = { "Bdelete", "Bwipeout" },
+		keys = { "<leader>bd" },
+	})
+
 	use({
 		"nvim-lualine/lualine.nvim",
 		config = function()
@@ -130,6 +137,13 @@ return packer.startup(function(use)
 		end,
 		opt = true,
 	})
+
+	use({
+		"peterhoeg/vim-qml",
+		event = "BufRead",
+		ft = { "qml" },
+	})
+
 	use({
 		"kevinhwang91/nvim-bqf",
 		ft = "qf",
@@ -317,6 +331,7 @@ return packer.startup(function(use)
 		end,
 		opt = true,
 	})
+
 	use({
 		"chipsenkbeil/distant.nvim",
 		config = function()
@@ -325,12 +340,23 @@ return packer.startup(function(use)
 			})
 		end,
 		cmd = { "DistantLaunch", "DistantOpen", "DistantInstall" },
+		disable = true,
 	})
 
 	use({
 		"jamestthompson3/nvim-remote-containers",
 		cmd = { "AttachToContainer", "BuildImage", "StartImage" },
+		disable = true,
 	})
+
+	use({
+		"https://codeberg.org/esensar/nvim-dev-container",
+		config = function()
+			require("devcontainer").setup({})
+		end,
+		disable = true,
+	})
+
 	use({ "szw/vim-maximizer" })
 	use({
 		"iamcco/markdown-preview.nvim",

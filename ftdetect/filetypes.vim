@@ -3,6 +3,7 @@
 au BufRead,BufNewFile *.launch set filetype=xml
 au BufRead,BufNewFile *.urdf set filetype=xml
 au BufRead,BufNewFile *.xacro set filetype=xml
+au BufRead,BufNewFile *.world set filetype=xml
 
 " adding some settings for python dev
 au BufRead,BufNewFile python

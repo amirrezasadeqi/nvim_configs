@@ -112,8 +112,8 @@ local unstruct_imappings = {
 	},
 }
 local unstruct_vmappings = {
-	j = {
-		j = { "<ESC>", "Escape", mode = "x" },
+	i = {
+		i = { "<ESC>", "Escape", mode = "x" },
 	},
 	g = {
 		a = { "<Plug>(EasyAlign)", mode = "x" },

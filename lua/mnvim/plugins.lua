@@ -372,7 +372,8 @@ return packer.startup(function(use)
 	use({ "ap/vim-css-color", event = "BufEnter" })
 
 	use({ "neovim/nvim-lspconfig", after = "cmp-nvim-lsp", config = [[require("mnvim.nvimlsp")]] })
-	use({ "williamboman/nvim-lsp-installer" })
+	use({ "williamboman/mason.nvim" })
+	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "hrsh7th/nvim-cmp", event = "InsertEnter *", config = [[require("mnvim.nvimcmp")]] })
 	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
 	use({ "folke/neodev.nvim" })
@@ -405,6 +406,7 @@ return packer.startup(function(use)
 
 	use({ "ThePrimeagen/refactoring.nvim", disable = true }) --This is not complete yet and i will use it in future.
 	use({ "dstein64/vim-startuptime", cmd = "StartupTime", config = [[vim.g.startuptime_tries = 100]] })
+	use({ "christoomey/vim-tmux-navigator" })
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

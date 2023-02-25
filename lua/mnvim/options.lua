@@ -34,6 +34,8 @@ function M.set_default_opts()
   for k, v in pairs(options) do
     vim.opt[k] = v
   end
+  -- option specifying usage of folke/neodev.nvim
+  vim.g.wlua = "neovim" -- set to "" to not setup neodev
 end
 
 return M

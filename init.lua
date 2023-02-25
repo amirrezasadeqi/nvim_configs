@@ -1,4 +1,4 @@
-require('impatient')
+require("impatient")
 require("mnvim.options").set_default_opts()
 require("mnvim.plugins")
 -- Highlight on yank

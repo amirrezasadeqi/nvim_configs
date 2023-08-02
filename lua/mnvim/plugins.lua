@@ -204,6 +204,8 @@ return packer.startup(function(use)
 		-- 'preservim/vimux' -- if benmills repo didn't work you would use this instead.
 		cmd = { "VimuxPromptCommand", "VimuxRunLastCommand", "VimuxCloseRunner" },
 	})
+  -- Disable cscope related plugins for now, since nevim 9.0+ has dropped its support.
+  -- In future ... .
 	use({
 		"ludovicchabant/vim-gutentags",
 		requires = {
@@ -213,15 +215,18 @@ return packer.startup(function(use)
 					vim.g.gutentags_plus_nomap = true
 				end,
 				after = "vim-gutentags",
+        disable = true
 			},
 		},
 		config = function()
 			require("mnvim.gutentags").config()
 		end,
+    disable = true
 	})
 	use({
 		"brookhong/cscope.vim",
 		opt = true,
+    disable = true
 	})
 	use({
 		"preservim/tagbar",
